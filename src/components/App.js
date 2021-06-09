@@ -4,7 +4,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css'
 
-import Home from '../pages'
+import Home from '../pages/'
 import Dashboard from './Dashboard/Dashboard';
 import Preferences from './Preferences/Preferences';
 import useToken from './useToken';

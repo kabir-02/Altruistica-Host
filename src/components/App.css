@@ -200,3 +200,8 @@ form {
 .form-f{
   width:100%!important;
 }
+
+#vertical-tabpanel-0{
+  width:80%;
+  margin-left:auto;
+}
