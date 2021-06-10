@@ -6,10 +6,6 @@ import {Leaderboard} from '../components/Leaderboard'
 import Testimonials from '../components/Impact'
 import Demo from '../components/FAQs'
 import Contact from '../components/Contact'
-import DonationMatch from '../components/DonationMatch'
-import CardSection from '../components/CardSection'
-import SearchSection from '../components/SearchSection';
-import Blog from '../components/Blog'
 const Home = () => {
    
     return (
@@ -21,10 +17,6 @@ const Home = () => {
        <Testimonials />
        <Demo />
        <Contact />
-       <DonationMatch />
-       <SearchSection/>
-       <CardSection/>
-       <Blog/>
        </>
     )
 }

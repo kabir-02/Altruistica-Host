@@ -5,7 +5,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import CardSection from '../CardSection'
+import {SearchCardData} from './SearchCardData'
+import Grid from '@material-ui/core/Grid';
+import IndividualCard from '../CardSection/IndividualCard'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,7 +80,17 @@ export default function VerticalTabSearch() {
         <Tab label="Homes" {...a11yProps(6)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <CardSection/>
+      <center>
+      <Grid container spacing={3} >
+        {SearchCardData.map((data, key)=>{
+          return(
+            <Grid item xs={12} sm={6} md={4} key={key} >
+            <IndividualCard name={data.name} author={data.author} date={data.date} description={data.description} image={data.image} url={data.url} />
+            </Grid>
+          )
+        })}
+        </Grid>
+        </center>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

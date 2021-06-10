@@ -13,6 +13,9 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 
 import {SignIn} from "./Login/index";
+import WhatsAppInt from './WhatsAppInt'
+import SearchSection from './SearchSection';
+import Blog from './Blog'
 
 function App() { 
   const [isOpen, setIsOpen]= useState(false);
@@ -33,6 +36,12 @@ function App() {
        <Navbar toggle={toggle}/>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/donate">
+            <SearchSection/>
+          </Route>
+          <Route path="/covid19-support">
+            <Blog/>
+          </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
@@ -41,6 +50,7 @@ function App() {
           </Route>
           <Route path="/signin" component={SignIn}/>
         </Switch>
+        <WhatsAppInt/>
         <Footer/>
       </BrowserRouter>
     </div>

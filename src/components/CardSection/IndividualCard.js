@@ -6,7 +6,6 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
@@ -39,20 +38,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function IndividualCard() {
+const IndividualCard=({title,author,date,description,image,url})=> {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const [expanded] = React.useState(false);
 
   return (
     <Card className={classes.rootIndCard}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            
           </Avatar>
         }
         action={
@@ -60,17 +55,17 @@ export default function IndividualCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Kindhaya Suman"
-        subheader="May 29, 2021"
+        title={title}
+        subheader={date}
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        image={image}
+        title={author}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-        Support The Underprivileged Children Over Come The Second Wave Of COVID 19 Crises And Lead A Deserving Life.
+        {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -92,3 +87,5 @@ export default function IndividualCard() {
     </Card>
   );
 }
+
+export default IndividualCard;

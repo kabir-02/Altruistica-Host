@@ -116,6 +116,7 @@ export const Leaderboard = (props) => {
       <> 
       <div id='leaderboard' className='info-section'>
       <h2 className="title-section">LEADERBOARD</h2>
+      <center>
       <Container maxWidth="md" component="main" >
         <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
@@ -150,6 +151,7 @@ export const Leaderboard = (props) => {
           ))}
         </Grid>
     </Container>
+    </center>
     </div>
     </>
   );

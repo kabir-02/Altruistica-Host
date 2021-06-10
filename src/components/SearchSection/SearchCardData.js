@@ -1,0 +1,42 @@
+export const  SearchCardData = [
+    {
+      name:"Types of Covid-19 Tests",
+      author:"Chloe Kent",
+      image: "",
+      date:"14th May 2021",
+      description:"The three main types of Covid-19 test - PCR, LFT and antibody - all work in different ways to diagnose infection or assess immunity.",
+      url:"https://www.medicaldevice-network.com/features/types-of-covid-19-test-antibody-pcr-antigen/",
+    },
+    {
+        name:"Types of Covid-19 Tests",
+        author:"Chloe Kent",
+        image: "",
+        date:"14th May 2021",
+        description:"The three main types of Covid-19 test - PCR, LFT and antibody - all work in different ways to diagnose infection or assess immunity.",
+        url:"https://www.medicaldevice-network.com/features/types-of-covid-19-test-antibody-pcr-antigen/",
+      },
+      {
+        name:"Types of Covid-19 Tests",
+        author:"Chloe Kent",
+        image: "",
+        date:"14th May 2021",
+        description:"The three main types of Covid-19 test - PCR, LFT and antibody - all work in different ways to diagnose infection or assess immunity.",
+        url:"https://www.medicaldevice-network.com/features/types-of-covid-19-test-antibody-pcr-antigen/",
+      },
+      {
+        name:"Types of Covid-19 Tests",
+        author:"Chloe Kent",
+        image: "",
+        date:"14th May 2021",
+        description:"The three main types of Covid-19 test - PCR, LFT and antibody - all work in different ways to diagnose infection or assess immunity.",
+        url:"https://www.medicaldevice-network.com/features/types-of-covid-19-test-antibody-pcr-antigen/",
+      },
+      {
+        name:"Types of Covid-19 Tests",
+        author:"Chloe Kent",
+        image: "",
+        date:"14th May 2021",
+        description:"The three main types of Covid-19 test - PCR, LFT and antibody - all work in different ways to diagnose infection or assess immunity.",
+        url:"https://www.medicaldevice-network.com/features/types-of-covid-19-test-antibody-pcr-antigen/",
+      },
+  ];

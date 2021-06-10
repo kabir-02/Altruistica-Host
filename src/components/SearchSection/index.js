@@ -73,7 +73,7 @@ export default function SearchSection() {
   };
 
   return (
-    <div className='info-section' id='donate'>
+    <div className='info-section' id='search'>
     <h2 className="title-section donh">Search</h2>
     <SearchBar
       onChange={() => console.log('onChange')}
