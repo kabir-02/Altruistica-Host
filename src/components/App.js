@@ -16,6 +16,7 @@ import {SignIn} from "./Login/index";
 import WhatsAppInt from './WhatsAppInt'
 import SearchSection from './SearchSection';
 import Blog from './Blog'
+import DonationMatch from './DonationMatch'
 
 function App() { 
   const [isOpen, setIsOpen]= useState(false);
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/donor-match">
+            <DonationMatch/>
           </Route>
           <Route path="/preferences">
             <Preferences />

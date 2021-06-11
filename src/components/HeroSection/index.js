@@ -31,7 +31,7 @@ const HeroSection = () => {
             <HeroContent>
                 <HeroH1>We are in this Together!</HeroH1>
                 <HeroP>
-                Create fundraisers for causes, projects and ideas. Donate not only money but also goods to those in need.
+                Raise money and support for causes, projects, ideas and talents. Join us in Empowering the World!
                 </HeroP>
                     <center>
         <Grid container spacing={3} >

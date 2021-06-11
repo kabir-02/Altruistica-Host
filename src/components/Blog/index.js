@@ -34,11 +34,11 @@ export default function Features() {
         <center>
         <Grid container spacing={3} >
         <Grid item xs={12} sm={4}>
-        <NavBtnLink className="borderWhite"><a href='https://covid19-twitter.in/'>Region-wise Resources</a></NavBtnLink></Grid>
+        <NavBtnLink className="borderWhite"><a className = "buttonBlog" href='https://covid19-twitter.in/'>Region-wise Resources</a></NavBtnLink></Grid>
         
-        <Grid item xs={12} sm={4}><NavBtnLink className="borderWhite" ><a href='https://www.cowin.gov.in/'>Vaccination Portal</a>
+        <Grid item xs={12} sm={4}><NavBtnLink className="borderWhite" ><a className = "buttonBlog" href='https://www.cowin.gov.in/'>Vaccination Portal</a>
         </NavBtnLink></Grid>
-        <Grid item xs={12} sm={4}><NavBtnLink className="borderWhite"><a href='https://www.worldometers.info/coronavirus/'>Covid-19 in Numbers</a></NavBtnLink></Grid>
+        <Grid item xs={12} sm={4}><NavBtnLink className="borderWhite"><a className = "buttonBlog" href='https://www.worldometers.info/coronavirus/'>Covid-19 in Numbers</a></NavBtnLink></Grid>
         </Grid></center>
         <div className={classes.rootCard}>
     <center>

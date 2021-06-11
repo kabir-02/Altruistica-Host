@@ -63,7 +63,7 @@ img{
     background: linear-gradient(to right, rgb(92, 169, 251) 0%, rgb(99, 114, 255) 100%);
 }
 
-#donate, #testimonials, #contact, #blog, #search{
+#donate, #testimonials, #contact, #blog, #search, #donorSwipe{
     background: #800080;
 }
 
@@ -208,7 +208,8 @@ form {
 
 .borderWhite
 {
-  border: 2px solid white !important;
+ background-color:white !important ;
+
 }
 
 .sc-fFSPTT, .flsZaw, .btvrn, .gXQYsP, .jxNEpQ, .sc-iemWCZ, .gIYdlg, .sc-hHEiqL, .cABitA,  .sc-dIvrsQ, .joXxUr{
@@ -229,7 +230,7 @@ form {
   }
 }
 
-#blog, #search{
+#blog, #search, #donorSwipe{
   margin-top:3rem;
 }
 
@@ -237,4 +238,17 @@ form {
   display: grid;
   grid-template-columns: 0;
   width:0;
+}
+
+.buttonMatch, .buttonBlog{
+  text-decoration:none!important;
+  color: #800080!important;
+}
+
+.borderWhite:hover{
+  background-color: #301934!important;
+}
+
+.buttonBlog:hover{
+  color:white !important;
 }

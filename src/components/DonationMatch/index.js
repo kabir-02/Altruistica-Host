@@ -1,104 +1,80 @@
-import React from 'react';
-import './index.css';
-import { Frame, useMotionValue, useTransform, useAnimation } from 'framer';
-  
-// Card component with destructured props
-const Card = ({ image, color }) => {
-  // To move the card as the user drags the cursor
-  const motionValue = useMotionValue(0);
-  
-  // To rotate the card as the card moves on drag
-  const rotateValue = useTransform(motionValue, [-200, 200], [-50, 50]);
-  
-  // To decrease opacity of the card when swipped
-  // on dragging card to left(-200) or right(200)
-  // opacity gradually changes to 0
-  // and when the card is in center opacity = 1
-  const opacityValue = useTransform(
-    motionValue,
-    [-200, -150, 0, 150, 200],
-    [0, 1, 1, 1, 0]
-  );
-  
-  // Framer animation hook
-  const animControls = useAnimation();
-  
-  // Some styling for the card
-  // it is placed inside the card component
-  // to make backgroundImage and backgroundColor dynamic
-  const style = {
-    backgroundImage: `url(${image})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    backgroundColor: color,
-    boxShadow: '5px 10px 18px #888888',
-    borderRadius: 10,
-    height: 300
-  };
-  
-  return (
-    <div className='App'>
-      <Frame
-        center
-        // Card can be drag only on x-axis
-        drag='x'
-        x={motionValue}
-        rotate={rotateValue}
-        opacity={opacityValue}
-        dragConstraints={{ left: -1000, right: 1000 }}
-        style={style}
-        onDragEnd={(event, info) => {
-          
-          // If the card is dragged only upto 150 on x-axis
-          // bring it back to initial position
-          if (Math.abs(info.point.x) <= 150) {
-            animControls.start({ x: 0 });
-          } else {
-            
-            // If card is dragged beyond 150
-            // make it disappear
-  
-            // Making use of ternary operator
-            animControls.start({ x: info.point.x < 0 ? -200 : 200 });
-          }
-        }}
-      />
-    </div>
-  );
-};
-  
-const DonationMatch = () => {
-  const cards = [
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: '#55ccff'
-    },
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: '#e8e8e8'
-    },
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: '#0a043c'
-    },
-    {
-      image: 'https://img.icons8.com/color/452/GeeksforGeeks.png',
-      color: 'black'
-    }
-  ];
-  
-  return (
-    <div className='App'>
-      
-      {/* Traversing through cards arrray using map function
-      and populating card with different image and color */}
-        
-      {cards.map((card) => (
-        <Card image={card.image} color={card.color} />
-      ))}
-    </div>
-  );
-};
+import React, { useState, useMemo } from 'react'
+import TinderCard from 'react-tinder-card'
+import './index.css'
 
-export default DonationMatch;
-  
+const db = [
+  {
+    name: 'Higher Education Books',
+    url: './img/donor-match/books.jpg'
+  },
+  {
+    name: 'Clothes for young girls',
+    url: './img/donor-match/clothes.jpg'
+  },
+  {
+    name: 'Grains for NGOs Only',
+    url: './img/donor-match/grains.jpg'
+  },
+  {
+    name: 'Masks for Needy',
+    url: './img/donor-match/masks.jpg'
+  },
+  {
+    name: 'Toys for children',
+    url: './img/donor-match/toys.jpg'
+  }
+]
+
+const alreadyRemoved = []
+let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
+
+function DonationMatch () {
+  const [characters, setCharacters] = useState(db)
+  const [lastDirection, setLastDirection] = useState()
+
+  const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
+
+  const swiped = (direction, nameToDelete) => {
+    console.log('removing: ' + nameToDelete)
+    setLastDirection(direction)
+    alreadyRemoved.push(nameToDelete)
+  }
+
+  const outOfFrame = (name) => {
+    console.log(name + ' left the screen!')
+    charactersState = charactersState.filter(character => character.name !== name)
+    setCharacters(charactersState)
+  }
+
+  const swipe = (dir) => {
+    const cardsLeft = characters.filter(person => !alreadyRemoved.includes(person.name))
+    if (cardsLeft.length) {
+      const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
+      const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
+      alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
+      childRefs[index].current.swipe(dir) // Swipe the card!
+    }
+  }
+
+  return (
+    <div className="info-section" id="donorSwipe">
+      <div className='cardContainer'>
+        {characters.map((character, index) =>
+          <TinderCard ref={childRefs[index]} className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
+              <h3>{character.name}</h3>
+            </div>
+          </TinderCard>
+        )}
+      </div>
+      <div className='buttons'>
+        <button onClick={() => swipe('left')}>Swipe left!</button>
+        <button onClick={() => swipe('right')}>Swipe right!</button>
+        <button><a className="buttonMatch" href="/matched-donors">View Matches</a></button>
+      </div>
+      {lastDirection ? <h2 key={lastDirection} className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'>Swipe a card or press a button to get started!</h2>}
+          </div>
+  )
+}
+
+export default DonationMatch
