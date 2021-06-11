@@ -10,7 +10,8 @@
   }
 
   .content {
-    display: flex;
+    display: block;
+    margin:auto;
     flex-direction: column;
   }
 
@@ -42,17 +43,22 @@
     color:black;
   }
 
+  .label-sign{
+    font-size:14px;
+  }
+
   .form-group input {
     margin-top: 6px;
-    min-width: 18em;
+    min-width: 8rem;
+    width: 12rem;
     height: 37px;
     padding: 0px 10px;
-    font-size: 16px;
+    font-size: 12px;
     font-family: "Open Sans", sans-serif;
     background-color: #f3f3f3;
     border: 0;
     border-radius: 4px;
-    margin-bottom: 6px;
+    margin-bottom: 0;
     transition: all 250ms ease-in-out;
   }
 
@@ -149,4 +155,8 @@
       color: #fff;
       margin-right: 3em;
       margin-left: 3em;
+}
+
+.img-sign{
+  height:200px!important;
 }
