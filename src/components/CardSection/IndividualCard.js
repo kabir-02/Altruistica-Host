@@ -81,7 +81,7 @@ const IndividualCard=({title,author,date,description,image,url})=> {
           })}
           aria-label="show more"
         >
-          <a href="https://www.cowin.gov.in"><ExpandMoreIcon /></a>
+          <a href={url}><ExpandMoreIcon /></a>
         </IconButton>
       </CardActions>
     </Card>
