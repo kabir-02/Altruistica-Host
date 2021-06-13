@@ -54,7 +54,7 @@ function Contact() {
                 minLength={8}
                 error={errors.password}
             />
-            <input type="submit" className="form-field" />
+            <input class="submit-contact" type="submit" className="form-field" />
             </form>
         </Grid>
     </Grid>

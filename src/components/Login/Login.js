@@ -17,11 +17,11 @@ export class Login extends React.Component {
           <div className="form">
             <div className="form-group">
               <label className="label-sign" htmlFor="username">Email</label>
-              <input type="email" name="email" placeholder="Email" />
+              <input className="signup-input" type="email" name="email" placeholder="Email" />
             </div>
             <div className="form-group">
               <label className="label-sign" htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="Password" />
+              <input className="signup-input" type="password" name="password" placeholder="Password" />
             </div>
           </div>
         </div>

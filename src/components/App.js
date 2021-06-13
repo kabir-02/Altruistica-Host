@@ -11,12 +11,16 @@ import useToken from './useToken';
 import Footer from './Footer'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
+import UserProfile from './UserProfile'
 
 import {SignIn} from "./Login/index";
 import WhatsAppInt from './WhatsAppInt'
 import SearchSection from './SearchSection';
 import Blog from './Blog'
 import DonationMatch from './DonationMatch'
+import FundsIndex from './UserProfile/FundsIndex';
+import UseAlcoins from './UserProfile/UseAlcoins';
+import EditProfile from './UserProfile/EditProfile';
 
 function App() { 
   const [isOpen, setIsOpen]= useState(false);
@@ -49,8 +53,20 @@ function App() {
           <Route path="/donor-match">
             <DonationMatch/>
           </Route>
+          <Route path="/user-profile">
+            <UserProfile/>
+          </Route>
           <Route path="/preferences">
             <Preferences />
+          </Route>
+          <Route path="/view-funds">
+            <FundsIndex />
+          </Route>
+          <Route path="/use-alcoins">
+            <UseAlcoins />
+          </Route>
+          <Route path="/edit-profile">
+            <EditProfile />
           </Route>
           <Route path="/signin" component={SignIn}/>
         </Switch>

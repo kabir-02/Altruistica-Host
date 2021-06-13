@@ -63,7 +63,7 @@ img{
     background: linear-gradient(to right, rgb(92, 169, 251) 0%, rgb(99, 114, 255) 100%);
 }
 
-#donate, #testimonials, #contact, #blog, #search, #donorSwipe{
+#donate, #testimonials, #contact, #blog, #search, #donorSwipe, #user-profile{
     background: #800080;
 }
 
@@ -99,17 +99,35 @@ form {
     color: #fff;
   }
 
+  .fund-label{
+    color:black!important;
+    width:50%;
+  }
+
+  .fund-input
+  {
+    width:24rem!important;
+    margin-top: 6px;
+    padding: 0px 10px;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f3f3f3;
+    border: 0;
+    border-radius: 4px;
+    margin-bottom: 0;
+    transition: all 250ms ease-in-out;
+  }
+
   input {
     margin: 0.5rem 0;
     padding: 0 0.5rem;
-    width: inherit;
     height: 2rem;
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
   }
 
-  input[type="submit"] {
+  .submit-contact {
     height: 2.5rem;
     font-size: 1rem;
     color: #800080;
@@ -117,6 +135,16 @@ form {
     cursor: pointer;
   }
 
+  submit-contact:hover{
+    background-color: #ffffff;
+    box-shadow: 0px 0px 14px 0.3px #800080;
+  }
+
+  submit-contact:focus {
+    outline: none;
+    box-shadow: 0px 0px 12px 0.8px #800080;
+  }
+ 
   .form-p {
     margin: 0;
     color: #ff9900;
@@ -212,8 +240,9 @@ form {
 
 }
 
-.sc-fFSPTT, .flsZaw, .btvrn, .gXQYsP, .jxNEpQ, .sc-iemWCZ, .gIYdlg, .sc-hHEiqL, .cABitA,  .sc-dIvrsQ, .joXxUr{
+.sc-fFSPTT, .flsZaw, .btvrn, .gXQYsP, .jxNEpQ, .sc-iemWCZ, .gIYdlg, .sc-hHEiqL, .cABitA,  .sc-dIvrsQ, .joXxUr,.sc-iemWCZ, .ffcNqn, .sc-dlMDgC .gbQRGn{
   z-index:-10 !important;
+  display:none;
 }
 
 #alert-whatsapp{
@@ -251,4 +280,26 @@ form {
 
 .buttonBlog:hover{
   color:white !important;
+}
+
+.makeStyles-content-10{
+  display:block!important;
+  margin:auto!important;
+  background-color: #800080;
+}
+
+select, textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+textarea{
+  height:100px!important;
+}
+
+
+.upsi{
+  width:25rem !important;
 }

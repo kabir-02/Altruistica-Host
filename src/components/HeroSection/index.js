@@ -89,19 +89,32 @@ const HeroSection = () => {
                     </Button></HtmlTooltip></Grid>
         </Grid>
         <Grid item xs={12} sm={3}  className="GridMargin">
-        <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography color="inherit">Let's Fight Covid-19</Typography>
-           {"This is not your or my struggle. It's ours"}.{' '}
-            {"Getting to you all the help we can during the pandemic."}
-          </React.Fragment>
-        }
-      ><Button to='/covid19-support' onMouseEnter = {onHover} onMouseLeave = {onHover}>
-                        Covid-19 Support 
-                    </Button></HtmlTooltip>
-                    
-                    </Grid></center>
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography color="inherit">Let's Fight Covid-19</Typography>
+              {"This is not your or my struggle. It's ours"}.{' '}
+                {"Getting to you all the help we can during the pandemic."}
+              </React.Fragment>
+            }
+          >
+            <Button to='/covid19-support' onMouseEnter = {onHover} onMouseLeave = {onHover}>Covid-19 Support</Button>
+          </HtmlTooltip>
+        </Grid>
+        <Grid item xs={12} sm={3}  className="GridMargin">
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography color="inherit">Let's Fight Covid-19</Typography>
+              {"This is not your or my struggle. It's ours"}.{' '}
+                {"Getting to you all the help we can during the pandemic."}
+              </React.Fragment>
+            }
+          >
+            <Button to='/user-profile' onMouseEnter = {onHover} onMouseLeave = {onHover}>Dashboard</Button>
+          </HtmlTooltip>
+        </Grid>
+                </center>
             </HeroContent>
         </HeroContainer>    
     )

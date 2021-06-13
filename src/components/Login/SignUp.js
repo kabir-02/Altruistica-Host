@@ -20,37 +20,37 @@ export class SignUp extends React.Component {
             <Grid item xs={12} sm={6}> 
             <div className="form-group">
               <label className="label-sign" htmlFor="name">Name</label>
-              <input type="text" name="name" placeholder="Name" />
+              <input className="signup-input" type="text" name="name" placeholder="Name" />
             </div>
             <div className="form-group">
               <label className="label-sign" htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="Email" />
+              <input className="signup-input" type="text" name="email" placeholder="Email" />
             </div>
             <div className="form-group">
               <label className="label-sign" htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="Password" />
+              <input className="signup-input" type="password" name="password" placeholder="Password" />
             </div>
             <div className="form-group">
               <label  className="label-sign" htmlFor="confirm-password">Confirm Password</label>
-              <input type="password" name="confirm-password" placeholder="Password" />
+              <input className="signup-input" type="password" name="confirm-password" placeholder="Password" />
             </div>
             </Grid>
             <Grid item xs={12} sm={6}> 
             <div className="form-group">
               <label className="label-sign" htmlFor="country">Phone</label>
-              <input type="text" name="country" placeholder="Phone" />
+              <input className="signup-input" type="text" name="country" placeholder="Phone" />
             </div>
             <div className="form-group">
               <label className="label-sign" htmlFor="city">City</label>
-              <input type="text" name="city" placeholder="City" />
+              <input className="signup-input" type="text" name="city" placeholder="City" />
             </div>
             <div className="form-group">
               <label className="label-sign" htmlFor="State">State</label>
-              <input type="text" name="state" placeholder="State" required/>
+              <input className="signup-input" type="text" name="state" placeholder="State" required/>
             </div>
             <div className="form-group">
               <label className="label-sign" htmlFor="country">Country</label>
-              <input type="text" name="country" placeholder="Country" />
+              <input className="signup-input" type="text" name="country" placeholder="Country" />
             </div>
             
             </Grid>

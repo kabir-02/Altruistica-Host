@@ -6,7 +6,7 @@ import {Leaderboard} from '../components/Leaderboard'
 import Testimonials from '../components/Impact'
 import Demo from '../components/FAQs'
 import Contact from '../components/Contact'
-import DonationMatch from '../components/DonationMatch'
+import UserProfile from '../components/UserProfile'
 const Home = () => {
    
     return (
