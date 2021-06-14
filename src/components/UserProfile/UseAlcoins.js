@@ -37,7 +37,7 @@ export default function UseAlcoins() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography color="textSecondary">
-            Make use of your Alcoins for your next donation. Donate more with the same amount that you spend.
+            Make use of your AL Coins for your next donation. Donate more with the same amount that you spend.
           </Typography>
         </AccordionDetails>
       </Accordion>

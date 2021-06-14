@@ -187,7 +187,7 @@ export default function Driver({ id }) {
         }
       >
       <Button to='/use-alcoins' onMouseEnter = {onHover} onMouseLeave = {onHover}>
-      Use Al Coins
+      Use AL Coins
         </Button>
         </HtmlTooltip>
         </Grid>
