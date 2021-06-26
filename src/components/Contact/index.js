@@ -1,5 +1,7 @@
 import { useForm } from "react-cool-form";
 import Grid from '@material-ui/core/Grid';
+import React from 'react';
+import emailjs from 'emailjs-com';
 
 const Field = ({ label, id, error, ...rest }) => (
   <div className='div-P'>
@@ -20,6 +22,19 @@ function Contact() {
   // Which helps the user focus on typing without being annoyed by the error message
   const errors = use("errors", { errorWithTouched: true });
 
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs.sendForm('service_yxj24zi', 'template_kmmt06h', e.target, 'user_CRd20x0pFCUsDeI6n0iwQ')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset()
+  }
+
+
   return (
     <div className='info-section' id='contact'>
     <Grid container spacing={6}>
@@ -28,12 +43,11 @@ function Contact() {
         </Grid>
         <Grid item xs={12} sm={6} >
             <h2 className="title-section conth">Get In Touch</h2>
-            <form ref={form} noValidate className="form-f">
+            <form className="form-f" onSubmit={sendEmail}>
             <Field className="form-field"
-                label="Username"
+                label="Name"
                 id="username"
                 name="username"
-                // Support built-in validation
                 required
                 error={errors.username}
             />
@@ -46,13 +60,18 @@ function Contact() {
                 error={errors.email}
             />
             <Field className="form-field"
-                label="Password"
-                id="password"
-                name="password"
-                type="password"
+                label="Subject"
+                id="subject"
+                name="subject"
+                type="subject"
                 required
-                minLength={8}
-                error={errors.password}
+            />
+            <Field className="form-field"
+                label="Message"
+                id="message"
+                name="message"
+                type="textarea"
+                required
             />
             <input class="submit-contact" type="submit" className="form-field" />
             </form>

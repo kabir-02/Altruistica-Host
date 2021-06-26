@@ -6,8 +6,6 @@
 -- Generation Time: May 22, 2021 at 07:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
-CREATE DATABASE funddb;
-USE funddb;
 SET
   SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

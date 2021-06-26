@@ -21,6 +21,9 @@ import DonationMatch from './DonationMatch'
 import FundsIndex from './UserProfile/FundsIndex';
 import UseAlcoins from './UserProfile/UseAlcoins';
 import EditProfile from './UserProfile/EditProfile';
+import AdminDashboard from './AdminDashboard'
+import Fundraiser from './Fundraiser'
+import UserFundraiser from './UserProfile/UserFundraiser'
 
 function App() { 
   const [isOpen, setIsOpen]= useState(false);
@@ -67,6 +70,15 @@ function App() {
           </Route>
           <Route path="/edit-profile">
             <EditProfile />
+          </Route>
+          <Route path="/fundraiser">
+            <Fundraiser />
+          </Route>
+          <Route path="/user-fundraiser">
+            <UserFundraiser />
+          </Route>
+          <Route path="/admin">
+            <AdminDashboard />
           </Route>
           <Route path="/signin" component={SignIn}/>
         </Switch>

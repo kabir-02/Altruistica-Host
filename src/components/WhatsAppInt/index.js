@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
 export default function WhatsAppInt() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  function NewTab() {
+    window.open(
+      "wa.link/fv4sui", "_blank");
+}
 
   return (
     <div className={classes.root} id="alert-whatsapp">
@@ -44,7 +48,7 @@ export default function WhatsAppInt() {
             </IconButton>
           }
         >
-          Want to learn more about us? Contact us on <a href="">WhatsApp!</a>
+          Want to learn more about us? Contact us on  <a  rel="noopener noreferrer" href="//wa.link/fv4sui" target="_blank">WhatsApp!</a>
         </Alert>
       </Collapse>
     </div>

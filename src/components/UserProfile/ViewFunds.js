@@ -244,6 +244,9 @@ export default function People() {
   };
 
   return (
+    <div style={{
+      marginTop: '60px',
+  }}>
     <Content>
       <Snackbar open={snackOpen} autoHideDuration={2000} onClose={snackClose}>
         <Alert onClose={snackClose} severity="success">
@@ -396,5 +399,6 @@ export default function People() {
         />
       </div>
     </Content>
+    </div>
   );
 }
