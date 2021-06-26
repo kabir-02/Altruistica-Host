@@ -24,6 +24,7 @@ import EditProfile from './UserProfile/EditProfile';
 import AdminDashboard from './AdminDashboard'
 import Fundraiser from './Fundraiser'
 import UserFundraiser from './UserProfile/UserFundraiser'
+import Gratitude from './Gratitude'
 
 function App() { 
   const [isOpen, setIsOpen]= useState(false);
@@ -76,6 +77,9 @@ function App() {
           </Route>
           <Route path="/user-fundraiser">
             <UserFundraiser />
+          </Route>
+          <Route path="/support-kindness">
+            <Gratitude />
           </Route>
           <Route path="/admin">
             <AdminDashboard />
