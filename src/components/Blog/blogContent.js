@@ -8,7 +8,7 @@ export const  BlogData = [
       url:"https://www.medicaldevice-network.com/features/types-of-covid-19-test-antibody-pcr-antigen/",
     },
     {
-        title:"Myths Associated with Covid-19",
+        title:"Myths Associated with Covid",
         author:"Avert.org",
         image: "https://www.avert.org/sites/default/files/styles/responsive_articlecustom_user_desktop_1x/public/COVID-19%20myths.png?itok=F_UHBbVl&timestamp=1587129828",
         date:"30th April 2021",

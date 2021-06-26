@@ -33,12 +33,9 @@ export default function Features() {
     <h2 className="title-section donh">What you need to Know about Covid-19!</h2>
         <center>
         <Grid container spacing={3} >
-        <Grid item xs={12} sm={4}>
-        <NavBtnLink className="borderWhite"><a className = "buttonBlog" href='https://covid19-twitter.in/'>Region-wise Resources</a></NavBtnLink></Grid>
-        
-        <Grid item xs={12} sm={4}><NavBtnLink className="borderWhite" ><a className = "buttonBlog" href='https://www.cowin.gov.in/'>Vaccination Portal</a>
-        </NavBtnLink></Grid>
-        <Grid item xs={12} sm={4}><NavBtnLink className="borderWhite"><a className = "buttonBlog" href='https://www.worldometers.info/coronavirus/'>Covid-19 Live Updates</a></NavBtnLink></Grid>
+        <Grid item xs={12} sm={4}><div className="borderWhite"><a className = "buttonBlog" rel="noopener noreferrer" target="_blank" href='https://covid19-twitter.in/'><center>Region-wise Resources</center></a></div></Grid>
+        <Grid item xs={12} sm={4}><div className="borderWhite" ><a className = "buttonBlog" rel="noopener noreferrer" target="_blank" href='https://www.cowin.gov.in/'><center>Vaccination Portal</center></a></div></Grid>
+        <Grid item xs={12} sm={4}><div className="borderWhite"><center><a className = "buttonBlog" rel="noopener noreferrer" target="_blank" href='https://www.worldometers.info/coronavirus/'>Covid-19 Live Updates</a></center></div></Grid>
         </Grid></center>
         <div className={classes.rootCard}>
     <center>

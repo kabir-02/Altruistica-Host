@@ -14,6 +14,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import LaunchIcon from '@material-ui/icons/Launch';
+import {
+  EmailShareButton, EmailIcon,
+  FacebookShareButton, FacebookIcon,
+  LinkedinShareButton, LinkedinIcon,
+  TwitterShareButton, TwitterIcon,
+  WhatsappShareButton, WhatsappIcon,
+} from "react-share";
 
 const useStyles = makeStyles((theme) => ({
   rootIndCard: {
@@ -38,23 +46,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 const IndividualCard=({title,author,date,description,image,url})=> {
   const classes = useStyles();
   const [expanded] = React.useState(false);
+  const text = {url}
 
   return (
     <Card className={classes.rootIndCard}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         title={title}
         subheader={date}
       />
@@ -69,19 +70,21 @@ const IndividualCard=({title,author,date,description,image,url})=> {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        {/* <IconButton aria-label="share">
+          <a href={`whatsapp://send?text=Check out this url: ${url}`} rel="noopener noreferrer" data-action="share/whatsapp/share" target="_blank"><ShareIcon /></a>
+        </IconButton> */}
+        <WhatsappShareButton className="social-media-icon" url={`Check out this article titled ${title}: ${url}`}><WhatsappIcon size={32} round={true}/></WhatsappShareButton>
+        <FacebookShareButton className="social-media-icon" url={url} quote={`Check out this article on ${title}: `}><FacebookIcon size={32} round={true}/></FacebookShareButton>
+        <EmailShareButton className="social-media-icon" url={`Check out this article on ${title} at ${url}`} subject={title}><EmailIcon size={32} round={true}/></EmailShareButton>
+        <LinkedinShareButton className="social-media-icon" url={url} title={`Check out this article on ${title} at `} summary={description}><LinkedinIcon size={32} round={true}/></LinkedinShareButton>
+        <TwitterShareButton className="social-media-icon" url={`Check out this article on ${title} at ${url}`}><TwitterIcon size={32} round={true}/></TwitterShareButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
           })}
           aria-label="show more"
         >
-          <a href={url}><ExpandMoreIcon /></a>
+          <a rel="noopener noreferrer" target="_blank" href={url}><LaunchIcon /></a>
         </IconButton>
       </CardActions>
     </Card>
