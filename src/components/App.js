@@ -18,6 +18,7 @@ import WhatsAppInt from './WhatsAppInt'
 import SearchSection from './SearchSection';
 import Blog from './Blog'
 import DonationMatch from './DonationMatch'
+import ViewMatch from './DonationMatch/ViewMatch'
 import FundsIndex from './UserProfile/FundsIndex';
 import UseAlcoins from './UserProfile/UseAlcoins';
 import EditProfile from './UserProfile/EditProfile';
@@ -83,6 +84,9 @@ function App() {
           </Route>
           <Route path="/admin">
             <AdminDashboard />
+          </Route>
+          <Route path="/matched-donors">
+            <ViewMatch />
           </Route>
           <Route path="/signin" component={SignIn}/>
         </Switch>
