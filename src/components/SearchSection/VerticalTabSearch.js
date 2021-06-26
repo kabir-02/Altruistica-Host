@@ -9,6 +9,8 @@ import {SearchCardData} from './SearchCardData'
 import Grid from '@material-ui/core/Grid';
 import IndividualCard from '../CardSection/IndividualCard'
 
+import SearchBar from "material-ui-search-bar";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -53,14 +55,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VerticalTabSearch() {
+export default function VerticalTabSearch(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const classType=props.data;
   return (
     <div className={classes.root}>
       <Tabs
@@ -71,16 +73,22 @@ export default function VerticalTabSearch() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="Medical" {...a11yProps(0)} />
-        <Tab label="Education" {...a11yProps(1)} />
-        <Tab label="Environment" {...a11yProps(2)} />
-        <Tab label="Social Cause" {...a11yProps(3)} />
-        <Tab label="NGOs" {...a11yProps(4)} />
-        <Tab label="School Event" {...a11yProps(5)} />
-        <Tab label="Homes" {...a11yProps(6)} />
+      {
+      classType.map((classtype, index) =>
+        <Tab label={classtype} {...a11yProps(index)} />
+      )
+      }
       </Tabs>
       <TabPanel value={value} index={0}>
       <center>
+      <SearchBar
+        onChange={() => console.log('onChange')}
+        onRequestSearch={() => console.log('onRequestSearch')}
+        style={{
+          margin: '20px auto',
+          maxWidth: 800
+        }}
+      />
       <Grid container spacing={3} >
         {SearchCardData.map((data, key)=>{
           return(

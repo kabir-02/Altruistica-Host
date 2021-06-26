@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchBar from "material-ui-search-bar";
 import PropTypes from 'prop-types';
@@ -9,6 +9,17 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import VerticalTabSearch from './VerticalTabSearch'
+import {SearchCardData} from './SearchCardData'
+import Grid from '@material-ui/core/Grid';
+import FundCards from '../CardSection/FundCards'
+import Axios from 'axios';
+import SearchByName from './SearchByName'
+
+const fundraising= ["All", "Medical", "Education", "Environment", "Social Cause", "Home"];
+const crowdfunding= ["All", "Business", "Idea", "Project", "Product", "Research"];
+const crowdsourcing= ["All", "Ideas", "Items", "Labour"];
+const organizations= ["All", "NGOs", "Schools"];
+const covid19= ["All", "Treatment", "Goods", "Medicines"];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,8 +43,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`scrollable-force-tabpanel-${index}`}
+      aria-labelledby={`scrollable-force-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -53,8 +64,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
   };
 }
 
@@ -63,6 +74,22 @@ export default function SearchSection() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [funds, setFunds] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:8082/displayfunds").then((response)=>{
+      console.log(response.data);
+      // const {title, desc, gentime, target, deadline}= response.data
+      // const updatedFunds= [...funds]
+      // updatedFunds.title=title
+      // updatedFunds.desc=desc
+      // updatedFunds.gentime=gentime
+      // updatedFunds.target=target
+      // updatedFunds.deadline=deadline
+      // setFunds(updatedFunds)
+      setFunds(response.data);
+    });
+  },[]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -74,15 +101,7 @@ export default function SearchSection() {
 
   return (
     <div className='info-section' id='search'>
-    <h2 className="title-section donh">Search</h2>
-    <SearchBar
-      onChange={() => console.log('onChange')}
-      onRequestSearch={() => console.log('onRequestSearch')}
-      style={{
-        margin: '20px auto',
-        maxWidth: 800
-      }}
-    />
+    <h2 className="title-section donh">Donate Here</h2>
 <center>
 <div className={classes.tabRoot}>
       <AppBar position="static" color="default">
@@ -91,14 +110,16 @@ export default function SearchSection() {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+          variant="scrollable"
+          scrollButtons="on"
+          aria-label="scrollable force tabs example"
         >
-          <Tab label="Fundraising" {...a11yProps(0)} />
-          <Tab label="Crowdfunding" {...a11yProps(1)} />
-          <Tab label="Crowdsourcing" {...a11yProps(2)} />
-          <Tab label="Auctioning" {...a11yProps(3)} />
-          <Tab label="Covid-19 Support" {...a11yProps(4)} />
+          <Tab label="All Categories" {...a11yProps(0)} />
+          <Tab label="Fundraising" {...a11yProps(1)} />
+          <Tab label="Crowdfunding" {...a11yProps(2)} />
+          <Tab label="Crowdsourcing" {...a11yProps(3)} />
+          <Tab label="Organizations" {...a11yProps(4)} />
+          <Tab label="Covid-19 Support" {...a11yProps(5)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -107,19 +128,31 @@ export default function SearchSection() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <VerticalTabSearch/>
+        <SearchByName/>
+        <Grid container spacing={3} >
+        {funds.map((data, key)=>{
+          return(
+            <Grid item xs={12} sm={6} md={4} key={key} >
+            <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />
+            </Grid>
+          )
+        })}
+        </Grid>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <VerticalTabSearch/>
+          <VerticalTabSearch data={fundraising}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-        <VerticalTabSearch/>
+        <VerticalTabSearch data={crowdfunding} />
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-        <VerticalTabSearch/>
+        <VerticalTabSearch data={crowdsourcing}/>
         </TabPanel>
         <TabPanel value={value} index={4} dir={theme.direction}>
-        <VerticalTabSearch/>
+        <VerticalTabSearch data={organizations}/>
+        </TabPanel>
+        <TabPanel value={value} index={5} dir={theme.direction}>
+        <VerticalTabSearch data={covid19}/>
         </TabPanel>
       </SwipeableViews>
     </div>
