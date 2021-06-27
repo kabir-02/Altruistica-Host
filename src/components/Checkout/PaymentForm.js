@@ -37,8 +37,17 @@ export default function PaymentForm() {
             autoComplete="cc-csc"
           />
         </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
+            id="amount"
+            label="Donation Amount"
+            fullWidth
+            autoComplete="cc-csc"
+          />
+        </Grid>
         <Grid item xs={12}>
-          <FormControlLabel
+          <FormControlLabel className='black-label'
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
           />
