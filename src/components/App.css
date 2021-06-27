@@ -330,3 +330,7 @@ textarea{
   .approval-table{
     background-color:white;
   }
+
+  .grid-full{
+    min-width:60vw !important;
+  }

@@ -8,7 +8,7 @@ import Demo from '../components/FAQs'
 import Contact from '../components/Contact'
 import UserProfile from '../components/UserProfile'
 const Home = () => {
-   
+    console.log(window.location.pathname);
     return (
        <>
        <HeroSection />

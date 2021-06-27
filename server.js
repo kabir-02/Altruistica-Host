@@ -59,7 +59,7 @@ app.post('/signup', (req, res) => {
   console.log(users)
   console.log(values)
 
-  db.query('INSERT INTO user_info (Email, Create_pw, Confirm_pw, Name, Mobile_no, City, State, Country) VALUES ?', [values], function(err, result){
+  db.query('INSERT INTO user_info (Name, Email, Create_pw, Confirm_pw,  Mobile_no, City, State, Country) VALUES ?', [values], function(err, result){
     if(err){
       res.send(err);
     }
@@ -77,7 +77,7 @@ app.get('/init', function(req, res){
 })
 
 app.get('/lboard1', (req, res) => {
-  const sqlSelect = "SELECT Name, Tamt_donated,Email FROM user_info ORDER BY Tamt_donated DESC limit 0,1";
+  const sqlSelect = "SELECT Name, Tamt_donated FROM user_info ORDER BY Tamt_donated DESC limit 0,1";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     result = JSON.stringify(result)
@@ -87,7 +87,7 @@ app.get('/lboard1', (req, res) => {
 });
 
 app.get('/lboard2', (req, res) => {
-  const sqlSelect = "SELECT Name, Tamt_donated,Email FROM user_info ORDER BY Tamt_donated DESC limit 1,1";
+  const sqlSelect = "SELECT Name, Tamt_donated FROM user_info ORDER BY Tamt_donated DESC limit 1,1";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("successread")
@@ -96,7 +96,7 @@ app.get('/lboard2', (req, res) => {
 });
 
 app.get('/lboard3', (req, res) => {
-  const sqlSelect = "SELECT Name, Tamt_donated,Email FROM user_info ORDER BY Tamt_donated DESC limit 2,1";
+  const sqlSelect = "SELECT Name, Tamt_donated FROM user_info ORDER BY Tamt_donated DESC limit 2,1";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("successread")
@@ -122,8 +122,9 @@ app.get('/displayfunds', (req, res) => {
   //res.end()
 });
 
-app.get('/display01', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising';"
+app.get('/displayall', (req, res) => {
+  console.log(req.query.class);
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("Reads funds")
@@ -131,8 +132,8 @@ app.get('/display01', (req, res) => {
   //res.end()
 });
 
-app.get('/display02', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=1;"
+app.get('/display', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_category='"+req.query.category+"';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("Reads funds")
@@ -140,40 +141,6 @@ app.get('/display02', (req, res) => {
   //res.end()
 });
 
-app.get('/display03', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=2;"
-  db.query(sqlSelect, (err, result)=> {
-    res.send(result);
-    console.log("Reads funds")
-  });
-  //res.end()
-});
-
-app.get('/display04', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=3;"
-  db.query(sqlSelect, (err, result)=> {
-    res.send(result);
-    console.log("Reads funds")
-  });
-  //res.end()
-});
-app.get('/display03', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=4;"
-  db.query(sqlSelect, (err, result)=> {
-    res.send(result);
-    console.log("Reads funds")
-  });
-  //res.end()
-});
-
-app.get('/display04', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=5;"
-  db.query(sqlSelect, (err, result)=> {
-    res.send(result);
-    console.log("Reads funds")
-  });
-  //res.end()
-});
 
 app.get('/displayapprovals', (req, res) => {
   const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline, Name, City, State FROM fundraisers, user_info WHERE fr_uid=user_id AND fr_status=0";

@@ -100,6 +100,26 @@ export const NavLinks = styled(LinkS)`
     }
 `;
 
+export const NavLink = styled(LinkR)`
+    color: #800080;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+
+    &.active{
+        border-bottom: 3px solid #301934;
+    }
+    &:hover{
+        transition: all 0.2s ease-in-out;
+        color: #301934;
+        font-weight:bold;
+        text-decoration:none;
+    }
+`;
+
 export const NavBtn= styled.nav`
     display:flex;
     align-items: center;

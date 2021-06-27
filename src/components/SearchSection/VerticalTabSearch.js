@@ -60,44 +60,42 @@ const useStyles = makeStyles((theme) => ({
 export default function VerticalTabSearch(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [funds00, setFunds00] = useState([]);
   const [funds01, setFunds01] = useState([]);
   const [funds02, setFunds02] = useState([]);
   const [funds03, setFunds03] = useState([]);
   const [funds04, setFunds04] = useState([]);
   const [funds05, setFunds05] = useState([]);
-  const [funds06, setFunds06] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/display01").then((response)=>{
+    Axios.get("http://localhost:8082/displayall?class="+props.fr_class).then((response)=>{
       console.log(response.data);
-      setFunds01(response.data);
+      setFunds00(response.data);
+      console.log(props.data.length);
     });
-    Axios.get("http://localhost:8082/display02").then((response)=>{
-      console.log(response.data);
-      setFunds02(response.data);
+    for( let i = 1; i<=props.data.length; i++)
+    {
+      Axios.get("http://localhost:8082/display?class="+props.fr_class+"&category="+i).then((response)=>{
+      // console.log(response.data);
+      // console.log("This is value"+ value);
+      // console.log(props.data.length);
+      switch(i){
+        case 1: setFunds01(response.data); break;
+        case 2: setFunds02(response.data); break;
+        case 3: setFunds03(response.data); break;
+        case 4: setFunds04(response.data); break;
+        case 5: setFunds05(response.data); break;
+      }
     });
-    Axios.get("http://localhost:8082/display03").then((response)=>{
-      console.log(response.data);
-      setFunds03(response.data);
-    });
-    Axios.get("http://localhost:8082/display04").then((response)=>{
-      console.log(response.data);
-      setFunds04(response.data);
-    });
-    Axios.get("http://localhost:8082/display05").then((response)=>{
-      console.log(response.data);
-      setFunds05(response.data);
-    });
-    Axios.get("http://localhost:8082/display06").then((response)=>{
-      console.log(response.data);
-      setFunds06(response.data);
-    });
+  }
   },[]);
   
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log("This is newValue"+ newValue);
   };
+
   const classType=props.data;
   return (
     <div className={classes.root}>
@@ -118,8 +116,8 @@ export default function VerticalTabSearch(props) {
       <TabPanel value={value} index={0}>
       <center>
       <SearchByName/>
-      <Grid container spacing={3} >
-        {funds01.map((data, key)=>{
+      <Grid   className='grid-full' container spacing={3} >
+        {funds00.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
             <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />
@@ -132,8 +130,8 @@ export default function VerticalTabSearch(props) {
       <TabPanel value={value} index={1}>
       <center>
       <SearchByName/>
-      <Grid container spacing={3} >
-        {funds02.map((data, key)=>{
+      <Grid className='grid-full' container spacing={3} >
+        {funds01.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
             <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />
@@ -146,8 +144,8 @@ export default function VerticalTabSearch(props) {
       <TabPanel value={value} index={2}>
       <center>
       <SearchByName/>
-      <Grid container spacing={3} >
-        {funds03.map((data, key)=>{
+      <Grid className='grid-full' container spacing={3} >
+        {funds02.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
             <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />
@@ -160,8 +158,8 @@ export default function VerticalTabSearch(props) {
       <TabPanel value={value} index={3}>
       <center>
       <SearchByName/>
-      <Grid container spacing={3} >
-        {funds04.map((data, key)=>{
+      <Grid className='grid-full' container spacing={3} >
+        {funds03.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
             <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />
@@ -174,8 +172,8 @@ export default function VerticalTabSearch(props) {
       <TabPanel value={value} index={4}>
       <center>
       <SearchByName/>
-      <Grid container spacing={3} >
-        {funds05.map((data, key)=>{
+      <Grid className='grid-full' container spacing={3} >
+        {funds04.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
             <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />
@@ -188,8 +186,8 @@ export default function VerticalTabSearch(props) {
       <TabPanel value={value} index={5}>
       <center>
       <SearchByName/>
-      <Grid container spacing={3} >
-        {funds06.map((data, key)=>{
+      <Grid className='grid-full' container spacing={3} >
+        {funds05.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
             <FundCards title={data.fr_title} target={data.fr_target} gendate={data.fr_gentime} image={data.image} url={data.url} />

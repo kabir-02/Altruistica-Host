@@ -6,10 +6,10 @@ export class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       email: "",
       create_pw: "",
-      confirm_pw: "",
-      name: "",
+      confirm_pw: "",      
       phone: "",
       city: "",
       state: "",
@@ -44,6 +44,7 @@ export class SignUp extends React.Component {
     }).then(function (response) {
       console.log(response);
       if (response.status === 200) {
+
         alert("Saved");
       } else {
         alert("Issues saving");
@@ -52,6 +53,7 @@ export class SignUp extends React.Component {
   };
 
   render() {
+    console.log(window.location.pathname);
     return (
       <div className="base-container" ref={this.props.containerRef}>
         <div className="header">Sign Up</div>
@@ -59,7 +61,7 @@ export class SignUp extends React.Component {
           <div className="image">
             <img className="img-sign" src={loginImg} />
           </div>
-          <div className="form">
+          <form className="form" action="/dashboard">
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <div className="form-group">
@@ -80,10 +82,11 @@ export class SignUp extends React.Component {
                   </label>
                   <input
                     className="signup-input"
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email"
                     onChange={this.handleChange}
+                    required="required"
                   />
                 </div>
                 <div className="form-group">
@@ -163,10 +166,10 @@ export class SignUp extends React.Component {
                 </div>
               </Grid>
             </Grid>
-          </div>
+          </form>
         </div>
         <div className="footer">
-          <button type="button" onClick={this.handleSubmit} className="btn">
+          <button type="submit" onClick={this.handleSubmit} className="btn">
             Register
           </button>
         </div>

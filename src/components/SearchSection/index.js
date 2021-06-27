@@ -132,19 +132,19 @@ export default function SearchSection() {
         </Grid>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <VerticalTabSearch data={fundraising}/>
+          <VerticalTabSearch data={fundraising} fr_class={"Fundraising"}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-        <VerticalTabSearch data={crowdfunding} />
+        <VerticalTabSearch data={crowdfunding} fr_class={"Crowdfunding"} />
         </TabPanel>
         <TabPanel value={value} index={3} dir={theme.direction}>
-        <VerticalTabSearch data={crowdsourcing}/>
+        <VerticalTabSearch data={crowdsourcing} fr_class={"Crowdsourcing"}/>
         </TabPanel>
         <TabPanel value={value} index={4} dir={theme.direction}>
-        <VerticalTabSearch data={organizations}/>
+        <VerticalTabSearch data={organizations} fr_class={"Organisation"}/>
         </TabPanel>
         <TabPanel value={value} index={5} dir={theme.direction}>
-        <VerticalTabSearch data={covid19}/>
+        <VerticalTabSearch data={covid19} fr_class={"Covid19"}/>
         </TabPanel>
       </SwipeableViews>
     </div>

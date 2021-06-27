@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaBars} from 'react-icons/fa'
-import {Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtnLink} from './NavbarElements'
+import {Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavLink, NavBtnLink} from './NavbarElements'
 
 const Navbar = ({toggle}) => {
     return (
@@ -13,7 +13,8 @@ const Navbar = ({toggle}) => {
                 </MobileIcon>
                 <NavMenu>
                     <NavItem>
-                        <NavLinks to="about">About</NavLinks>
+                        {console.log(window.location.pathname)}
+                        {window.location.pathname==='/'?<NavLinks to="about">About</NavLinks>: <NavLink to="/">About</NavLink>}
                     </NavItem>
                     <NavItem>
                         <NavLinks to="donate">Donate</NavLinks>

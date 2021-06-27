@@ -106,8 +106,8 @@ export const Leaderboard = (props) => {
       const updatedTiers= [...tiers]
       //  setting name, email and total amount donated
       updatedTiers[1].title=Name
-      updatedTiers[1].description[0]=Email
-      updatedTiers[1].description[1]=Tamt_donated
+      // updatedTiers[1].description[]=Email
+      updatedTiers[1].description=Tamt_donated
       
       setTiers(updatedTiers)
     })
@@ -121,8 +121,7 @@ export const Leaderboard = (props) => {
           const updatedTiers= [...tiers]
           //  setting name, email and total amount donated
           updatedTiers[0].title=Name
-          updatedTiers[0].description[0]=Email
-          updatedTiers[0].description[1]=Tamt_donated
+          updatedTiers[0].description=Tamt_donated
           
           setTiers(updatedTiers)
         })
@@ -131,13 +130,12 @@ export const Leaderboard = (props) => {
     Axios.get('http://localhost:8082/lboard3').then((response)=>{
       console.log("response for board 3",response.data)
       //  we are getting fields which we need
-      const {Name,Email,Tamt_donated}= response.data[0]
+      const {Name,Tamt_donated}= response.data[0]
       //  create a copy of array
       const updatedTiers= [...tiers]
       //  setting name, email and total amount donated
       updatedTiers[2].title=Name
-      updatedTiers[2].description[0]=Email
-      updatedTiers[2].description[1]=Tamt_donated
+      updatedTiers[2].description=Tamt_donated
       
       setTiers(updatedTiers)
     })
@@ -171,14 +169,12 @@ export const Leaderboard = (props) => {
                     </Typography>
                   </div>
                   <ul>
-                    {tier.description.map((line,index) => (
-                      <Typography component="li" variant="subtitle1" align="center" key={line}>
-                        {index==0 && 'Email ID: '}
-                        {index==1 && 'Total Amount Donated: ₹'}
-                        
-                        {line}
+                    {/* {tier.description.map((line,index) => ( */}
+                      <Typography component="li" variant="subtitle1" align="center">
+                        {/* {index==0 && 'Email ID: '} */}
+                        Total Amount Donated: ₹
+                        {tier.description}
                       </Typography>
-                    ))}
                   </ul>
                 </CardContent>
               </Card>
