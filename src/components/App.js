@@ -26,6 +26,7 @@ import AdminDashboard from './AdminDashboard'
 import Fundraiser from './Fundraiser'
 import UserFundraiser from './UserProfile/UserFundraiser'
 import Gratitude from './Gratitude'
+import Checkout from './Checkout/Checkout'
 
 function App() { 
   const [isOpen, setIsOpen]= useState(false);
@@ -87,6 +88,9 @@ function App() {
           </Route>
           <Route path="/matched-donors">
             <ViewMatch />
+          </Route>
+          <Route path="/checkout">
+            <Checkout/>
           </Route>
           <Route path="/signin" component={SignIn}/>
         </Switch>
