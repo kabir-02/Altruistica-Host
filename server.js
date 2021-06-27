@@ -113,6 +113,15 @@ app.get('/displayfunds', (req, res) => {
   //res.end()
 });
 
+app.get('/displayapprovals', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline, Name, City, State FROM fundraisers, user_info WHERE fr_uid=user_id AND fr_status=0";
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads Approvals")
+  });
+  //res.end()
+});
+
 app.get('/fundraising', (req, res) => {
   const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=0 AND fr_class='Fundraising";
   db.query(sqlSelect, (err, result)=> {

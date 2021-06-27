@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import IndividualCard from '../CardSection/IndividualCard'
-import {NavBtnLink} from '../Navbar/NavbarElements'
-import {BlogData} from '../Blog/blogContent'
-import Grid from '@material-ui/core/Grid';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +27,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-export default function VievMatch() {
+export default function AdminDashboard() {
   const classes = useStyles();
+  const [approvals, setApprovals] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:8082/displayapprovals").then((response)=>{
+      console.log(response.data);
+      setApprovals(response.data);
+    });
+  },[]);
+
+
 
   
   return (
@@ -33,18 +46,40 @@ export default function VievMatch() {
     <h2 className="title-section donh">Welcome Admin!</h2>
         <div className={classes.rootCard}>
     <center>
-      <Grid container spacing={3} >
-        {BlogData.map((data, key)=>{
-          return(
-            <Grid item xs={12} sm={6} md={4} key={key} >
-            <IndividualCard title={data.title} author={data.author} date={data.date} description={data.description} image={data.image} url={data.url} />
-            </Grid>
-          )
+    <Table size="small" className='approval-table'>
+        <TableHead>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell>Deadline</TableCell>
+            <TableCell>Target</TableCell>
+            <TableCell>City</TableCell>
+            <TableCell align="right">Approve</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        { approvals.map((data,key)=>{
+            return(
+             <TableRow key={key}>
+             <TableCell>{data.fr_gentime}</TableCell>
+             <TableCell>{data.Name}</TableCell>
+             <TableCell>{data.fr_title}</TableCell>
+             <TableCell>{data.fr_desc}</TableCell>
+             <TableCell>{data.fr_deadline}</TableCell>
+             <TableCell>{data.fr_target}</TableCell>
+             <TableCell>{data.City}</TableCell>
+             <TableCell align="right"><button>Approve</button></TableCell>
+           </TableRow>
+           )
         })}
-        </Grid>
-        </center>
+        </TableBody>
+      </Table>
+    </center>
     </div>
     </div>
   );
 }
+
 
