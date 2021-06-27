@@ -104,8 +104,70 @@ app.get('/lboard3', (req, res) => {
   //res.end()
 });
 
+app.get('/support', (req, res) => {
+  const sqlSelect = "SELECT Name from user_info where SupportStatus=1 ";
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads Support")
+  });
+  //res.end()
+});
+
 app.get('/displayfunds', (req, res) => {
   const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=0";
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
+  });
+  //res.end()
+});
+
+app.get('/display01', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising';"
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
+  });
+  //res.end()
+});
+
+app.get('/display02', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=1;"
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
+  });
+  //res.end()
+});
+
+app.get('/display03', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=2;"
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
+  });
+  //res.end()
+});
+
+app.get('/display04', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=3;"
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
+  });
+  //res.end()
+});
+app.get('/display03', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=4;"
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
+  });
+  //res.end()
+});
+
+app.get('/display04', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='Fundraising' AND fr_category=5;"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("Reads funds")

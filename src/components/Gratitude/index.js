@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import SendIcon from '@material-ui/icons/Send';
 import Avatar from '@material-ui/core/Avatar';
+import Axios from 'axios';
 
 import SearchBar from "material-ui-search-bar";
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Gratitude() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
+  const [support, setSupport] = useState([]);
 
+  useEffect(() => {
+    Axios.get("http://localhost:8082/support").then((response)=>{
+      console.log(response.data);
+      setSupport(response.data);
+    });
+  },[]);
+  
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -48,25 +57,16 @@ export default function Gratitude() {
         }}
       />
     <List dense className={classes.root}>
-      {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
+      {support.map((data, index) => {
         return (
             
-          <ListItem key={value} button>
+          <ListItem key={index} button>
             <ListItemAvatar>
-              <Avatar
-                alt={`Avatar n°${value + 1}`}
-                src={`/static/images/avatar/${value + 1}.jpg`}
-              />
+              <Avatar/>
             </ListItemAvatar>
-            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+            <ListItemText  primary={data.Name} />
             <ListItemSecondaryAction>
-              <SendIcon
-                edge="end"
-                onChange={handleToggle(value)}
-                checked={checked.indexOf(value) !== -1}
-                inputProps={{ 'aria-labelledby': labelId }}
-              />
+              <SendIcon/>
             </ListItemSecondaryAction>
           </ListItem>
         );

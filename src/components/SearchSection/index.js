@@ -79,14 +79,6 @@ export default function SearchSection() {
   useEffect(() => {
     Axios.get("http://localhost:8082/displayfunds").then((response)=>{
       console.log(response.data);
-      // const {title, desc, gentime, target, deadline}= response.data
-      // const updatedFunds= [...funds]
-      // updatedFunds.title=title
-      // updatedFunds.desc=desc
-      // updatedFunds.gentime=gentime
-      // updatedFunds.target=target
-      // updatedFunds.deadline=deadline
-      // setFunds(updatedFunds)
       setFunds(response.data);
     });
   },[]);
