@@ -32,24 +32,24 @@ app.use(
 
 app.use(express.json())
 
-app.post('/initial_signup', (req, res) => {
-  var users= req.body;
-  var values = [];
+// app.post('/initial_signup', (req, res) => {
+//   var users= req.body;
+//   var values = [];
 
 
-values.push([users.email, users.Create_pw,users.Confirm_pw]);
+//   values.push([users.email, users.Create_pw,users.Confirm_pw]);
 
-console.log(users)
-console.log(values)
-db.query('INSERT INTO initial_signup (email, Create_pw, Confirm_pw) VALUES ?', [values], function(err,result) {
-  if(err) {
-     res.send(err);
-  }
- else {
-     res.send('Success');
-  } }
-  )
-})
+//   console.log(users)
+//   console.log(values)
+//   db.query('INSERT INTO initial_signup (email, Create_pw, Confirm_pw) VALUES ?', [values], function(err,result) {
+//     if(err) {
+//       res.send(err);
+//     }
+//   else {
+//       res.send('Success');
+//     } }
+//     )
+// })
 app.post('/signup', (req, res) => {
   res.header({"Access-Control-Allow-Origin": "*"});
   var users = req.body;
@@ -59,7 +59,7 @@ app.post('/signup', (req, res) => {
   console.log(users)
   console.log(values)
 
-  db.query('INSERT INTO signup (email, Create_pw, Confirm_pw, name, Phone, City, State, Country) VALUES ?', [values], function(err, result){
+  db.query('INSERT INTO user_info (Email, Create_pw, Confirm_pw, Name, Mobile_no, City, State, Country) VALUES ?', [values], function(err, result){
     if(err){
       res.send(err);
     }
