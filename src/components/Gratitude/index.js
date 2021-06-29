@@ -8,6 +8,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import SendIcon from '@material-ui/icons/Send';
 import Avatar from '@material-ui/core/Avatar';
 import Axios from 'axios';
+import {Button}  from 'react-bootstrap'
+import { useHistory} from 'react-router-dom'
 
 import SearchBar from "material-ui-search-bar";
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +24,7 @@ export default function Gratitude() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
   const [support, setSupport] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     Axios.get("http://localhost:8082/support").then((response)=>{
@@ -29,6 +32,13 @@ export default function Gratitude() {
       setSupport(response.data);
     });
   },[]);
+
+  
+  const handleClick = () =>{
+    history.push({
+      pathname: '/checkout',
+    });
+  }
   
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -66,7 +76,7 @@ export default function Gratitude() {
             </ListItemAvatar>
             <ListItemText  primary={data.Name} />
             <ListItemSecondaryAction>
-              <SendIcon/>
+            <Button type="button" variant="outline-success" onClick={handleClick} ><SendIcon/></Button>
             </ListItemSecondaryAction>
           </ListItem>
         );

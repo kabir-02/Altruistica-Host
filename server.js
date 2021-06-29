@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
-
+const bodyParser=require('body-parser');
 
 
 app.use(cors())
@@ -29,6 +29,8 @@ app.use(
     extended: true
   })
 )
+
+app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(express.json())
 
@@ -143,7 +145,7 @@ app.get('/display', (req, res) => {
 
 
 app.get('/displayapprovals', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline, Name, City, State FROM fundraisers, user_info WHERE fr_uid=user_id AND fr_status=0";
+  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline, Name, City, State FROM fundraisers, user_info WHERE fr_uid=user_id AND fr_status=0";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("Reads Approvals")
@@ -151,11 +153,29 @@ app.get('/displayapprovals', (req, res) => {
   //res.end()
 });
 
+app.put("/updateApprovalStatus", (req,res)=>{
+  const fr_id=req.body.fr_id;
+  const sqlUpdate="UPDATE fundraisers SET fr_status=1 WHERE fr_id="+fr_id+";"
+  db.query(sqlUpdate,(err, result)=>{
+    if(err)
+    console.log(err);
+  })
+});
+
 app.get('/fundraising', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=0 AND fr_class='Fundraising";
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=1 AND fr_class='Fundraising";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("Reads fundraisers")
+  });
+  //res.end()
+});
+
+app.get('/searchfunds', (req, res) => {
+  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads funds")
   });
   //res.end()
 });

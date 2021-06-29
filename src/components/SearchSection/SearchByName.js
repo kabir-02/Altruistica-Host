@@ -3,7 +3,7 @@ import { Form, FormControl, Button, Container}  from 'react-bootstrap'
 import { useHistory} from 'react-router-dom'
 import SearchBar from "material-ui-search-bar";
 
-export default function SearchByName(){
+export default function SearchByName(props){
   const [searchTerm,setSearchTerm] = useState('')
   const history = useHistory();
   const handleChange = (event)=>{

@@ -69,9 +69,7 @@ export default function VerticalTabSearch(props) {
 
   useEffect(() => {
     Axios.get("http://localhost:8082/displayall?class="+props.fr_class).then((response)=>{
-      console.log(response.data);
       setFunds00(response.data);
-      console.log(props.data.length);
     });
     for( let i = 1; i<=props.data.length; i++)
     {
@@ -115,7 +113,7 @@ export default function VerticalTabSearch(props) {
       </Tabs>
       <TabPanel value={value} index={0}>
       <center>
-      <SearchByName/>
+      <SearchByName />
       <Grid   className='grid-full' container spacing={3} >
         {funds00.map((data, key)=>{
           return(
