@@ -1,5 +1,4 @@
-# Aspireathon Project by Meta-four
-
+# Altruistica help repository!
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is a 4-in-1 donation system which includes Crowdfunding, Fundraising, Crowdsourcing and Auctioning. 
 
 ## Steps to follow:
