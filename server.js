@@ -180,6 +180,55 @@ app.get('/searchfunds', (req, res) => {
   //res.end()
 });
 
+app.post("/create_fund", (req, res) => {
+  var funds = req.body
+  const values = []
+  values.push(Object.values(funds))
+  console.log('funds',funds)
+  db.query(
+    `INSERT into fundraisers (${Object.keys(funds).toString()}) VALUES ?`,
+    [values],
+    function (err, result) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.status(200).send({ Success: result })
+      }
+    }
+  )
+})
+app.post("/update_user_profile", (req, res) => {
+  var user_profile = req.body
+  console.log("user_profile", user_profile)
+
+  db.query(
+    `UPDATE user_info SET NAME='${user_profile.name}', CITY='${user_profile.city}',STATE='${user_profile.state}', Create_pw='${user_profile.password}',Confirm_pw='${user_profile.confirm_password}', Country='${user_profile.country}', Mobile_no='${user_profile.phone}' WHERE Email='${user_profile.email}'`,
+    function (err, result) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.status(200).send({ Success: result })
+      }
+    }
+  )
+})
+
+app.get("/get_user_profiles", function (req, res) {
+  var query = db.query(
+    "SELECT fr_id,fr_title,fr_target FROM fundraisers",
+    function (err, result) {
+      // Neat!
+      if (err) {
+        res.status(400).send(err)
+      } else {
+        console.log("result", result)
+        res.status(200).send(result)
+      }
+    }
+  )
+})
+
+
 /*
 app.get("/", (req, res) => {
   db.connect(function(err) {
