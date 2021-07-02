@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -15,6 +15,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import Axios from 'axios';
 
 const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
@@ -76,6 +77,12 @@ function getStepContent(step) {
 export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [val, setVal] = useState([]);
+  useEffect(() => {
+    Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
+      setVal(response.data);
+    });
+  });
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);

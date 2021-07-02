@@ -6,8 +6,17 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Axios from 'axios';
 
+
+
 export default function PaymentForm() {
   const [val, setVal] = useState([]);
+  const [amount, setAmount] = useState([]);
+
+  // const submitPayment=(_id)=>{
+  //   Axios.put('http://localhost:8082/complete-payment', {uid: fr_id }).then((response)=>{
+  //     setApprovals(response.data);
+  //   });
+  // };
   useEffect(() => {
     Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
       setVal(response.data);
@@ -19,9 +28,11 @@ export default function PaymentForm() {
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
+      {val.map((val, key)=>{
+          return(
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth defaultValue={val.Name}/>
+          <TextField required id="cardName" label="Name on card" defaultValue={val.Name} fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -62,6 +73,8 @@ export default function PaymentForm() {
           />
         </Grid>
       </Grid>
+      )
+    })}
     </React.Fragment>
   );
 }

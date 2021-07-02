@@ -111,7 +111,7 @@ app.get('/lboard3', (req, res) => {
 });
 
 app.get('/support', (req, res) => {
-  const sqlSelect = "SELECT Name from user_info where SupportStatus=1 AND Name LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT user_id, Name from user_info where SupportStatus=1 AND Name LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });

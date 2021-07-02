@@ -14,11 +14,16 @@ export default function AddressForm() {
       setValue(response.data);
     });
   });
+
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Donor Details
       </Typography>
+      {value.map((value, key)=>{
+          return(
+  
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -62,6 +67,8 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
+      )
+    })}
     </React.Fragment>
   );
 }

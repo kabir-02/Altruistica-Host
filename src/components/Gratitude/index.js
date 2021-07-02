@@ -48,6 +48,7 @@ export default function Gratitude() {
   const handleClick = () =>{
     history.push({
       pathname: '/checkout',
+      search : `uid=2`,
     });
   }
 
