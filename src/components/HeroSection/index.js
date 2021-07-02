@@ -72,7 +72,7 @@ const HeroSection = () => {
             {"Support any registered user with any amount to support altruism."}
           </React.Fragment>
         }
-      ><Button to='/support-kindness' onMouseEnter = {onHover} onMouseLeave = {onHover}>
+      ><Button to='/support' onMouseEnter = {onHover} onMouseLeave = {onHover}>
                         Say Thanks
                     </Button></HtmlTooltip></Grid>
         <Grid item xs={12} sm={3}>
