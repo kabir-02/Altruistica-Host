@@ -14,7 +14,8 @@ class SignUp extends React.Component {
       phone: "",
       city: "",
       state: "",
-      country: ""
+      country: "",
+      admin: null
     };
     // this.onSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -37,7 +38,6 @@ class SignUp extends React.Component {
     // On submit of the form, send a POST request with the data to the server.
     this.routeChange();
     fetch(" http://localhost:8082/signup", {
-      mode: 'no-cors',
       body: JSON.stringify(this.state),
       cache: "no-cache",
       credentials: "same-origin",
@@ -45,7 +45,6 @@ class SignUp extends React.Component {
         "content-type": "application/json",
       },
       method: "POST",
-      mode: "cors",
       redirect: "follow",
       referrer: "no-referrer",
     }).then(function (response) {

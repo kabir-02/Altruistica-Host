@@ -11,7 +11,18 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
 
+const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+const payments = [
+  { name: 'Card type', detail: 'Visa' },
+  { name: 'Card holder', detail: 'Mr John Smith' },
+  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
+  { name: 'Expiry date', detail: '04/2024' },
+];
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -49,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Donor Details', 'Payment details', 'Review your Donation'];
+const steps = ['Donor Details', 'Payment details'];
 
 function getStepContent(step) {
   switch (step) {
@@ -57,14 +68,12 @@ function getStepContent(step) {
       return <AddressForm />;
     case 1:
       return <PaymentForm />;
-    case 2:
-      return <Review />;
     default:
       throw new Error('Unknown step');
   }
 }
 
-export default function Checkout() {
+export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -100,6 +109,40 @@ export default function Checkout() {
                 <Typography variant="subtitle1">
                   You have successfully donated using Altruistica. You can check the updated details on your dashboard.
                 </Typography>
+                <Typography variant="h6" gutterBottom>
+        Donation summary
+      </Typography>
+      <List disablePadding>
+        <ListItem className={classes.listItem}>
+          <ListItemText primary="Total" />
+          <Typography variant="subtitle1" className={classes.total}>
+            Rs 100
+          </Typography>
+        </ListItem>
+      </List>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography gutterBottom>John Smith</Typography>
+          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+        </Grid>
+        <Grid item container direction="column" xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom className={classes.title}>
+            Payment details
+          </Typography>
+          <Grid container>
+            {payments.map((payment) => (
+              <React.Fragment key={payment.name}>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.name}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{payment.detail}</Typography>
+                </Grid>
+              </React.Fragment>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
               </React.Fragment>
             ) : (
               <React.Fragment>

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function IndividualFundraiser() {
+export default function IndividualFundraiser(props) {
   const classes = useStyles();
 
   

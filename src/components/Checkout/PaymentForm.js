@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Axios from 'axios';
 
 export default function PaymentForm() {
+  const [value, setValue] = useState([]);
+  useEffect(() => {
+    Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
+      setValue(response.data);
+    });
+  });
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -22,6 +30,7 @@ export default function PaymentForm() {
             label="Card number"
             fullWidth
             autoComplete="cc-number"
+            name="cardNumber"
           />
         </Grid>
         <Grid item xs={12} md={6}>

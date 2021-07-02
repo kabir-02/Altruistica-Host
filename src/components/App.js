@@ -25,6 +25,7 @@ import EditProfile from './UserProfile/EditProfile';
 import AdminDashboard from './AdminDashboard'
 import Fundraiser from './Fundraiser'
 import UserFundraiser from './UserProfile/UserFundraiser'
+import IndividualFundraiser from './IndividualFundraiser'
 import Gratitude from './Gratitude'
 import Checkout from './Checkout/Checkout'
 
@@ -78,6 +79,9 @@ function App() {
           </Route>
           <Route path="/user-fundraiser">
             <UserFundraiser />
+          </Route>
+          <Route path="/fundraiser-details">
+            <IndividualFundraiser />
           </Route>
           <Route path="/support">
             <Gratitude />

@@ -110,7 +110,6 @@ app.get('/support', (req, res) => {
   const sqlSelect = "SELECT Name from user_info where SupportStatus=1 AND Name LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
-    console.log("Reads Support " +req.query.criteria)
   });
   //res.end()
 });
@@ -134,6 +133,31 @@ app.get('/displayall', (req, res) => {
   //res.end()
 });
 
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+	db.query("select * from user_info where Email = ? and Create_pw = ?",[email,password],function(error,results,fields){
+        if (results.length > 0) {
+            res.send({ message: "Logged in!" });
+			res.redirect("http://localhost:8001/user-profile");
+        } else {
+            res.send({ message: "Wrong email/password combination!" });
+        }
+        res.end();
+    })
+
+ });
+
+
 app.get('/display', (req, res) => {
   const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_category='"+req.query.category+"';"
   db.query(sqlSelect, (err, result)=> {
@@ -143,6 +167,14 @@ app.get('/display', (req, res) => {
   //res.end()
 });
 
+app.get('/display-payment-details', (req, res) => {
+  const sqlSelect = "SELECT Name, City, State, Country, Mobile from user_info WHERE user_id='"+req.user_id+"';";
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads Payment Details")
+  });
+  //res.end()
+});
 
 app.get('/displayapprovals', (req, res) => {
   const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline, Name, City, State FROM fundraisers, user_info WHERE fr_uid=user_id AND fr_status=0";
@@ -168,7 +200,7 @@ app.put("/updateApprovalStatus", (req,res)=>{
 });
 
 app.get('/fundraising', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=1 AND fr_class='Fundraising";
+  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=1 AND fr_class='Fundraising";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
     console.log("Reads fundraisers")
@@ -177,7 +209,7 @@ app.get('/fundraising', (req, res) => {
 });
 
 app.get('/searchall', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_title LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_title LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });
@@ -185,7 +217,7 @@ app.get('/searchall', (req, res) => {
 });
 
 app.get('/searchfunds', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });
@@ -193,7 +225,7 @@ app.get('/searchfunds', (req, res) => {
 });
 
 app.get('/searchfundsbycategory', (req, res) => {
-  const sqlSelect = "SELECT fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_category='"+req.query.category+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_category='"+req.query.category+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });
