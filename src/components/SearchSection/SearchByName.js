@@ -32,7 +32,7 @@ export default function SearchByName(props){
     Axios.get("http://localhost:8082/searchfunds?class="+props.fr_class+"&criteria="+searchTerm).then((response)=>{
       setCards(response.data);
     });
-  });
+  },[searchTerm]);
 
     return(
       <>

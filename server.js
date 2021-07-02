@@ -110,7 +110,7 @@ app.get('/support', (req, res) => {
   const sqlSelect = "SELECT Name from user_info where SupportStatus=1 AND Name LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
-    console.log("Reads Support" +req.query.criteria)
+    console.log("Reads Support " +req.query.criteria)
   });
   //res.end()
 });
