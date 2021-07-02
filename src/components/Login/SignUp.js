@@ -1,6 +1,7 @@
 import React from "react";
 import loginImg from "../../img/login.svg";
 import Grid from "@material-ui/core/Grid";
+import {Redirect} from 'react-router-dom'
 
 export class SignUp extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export class SignUp extends React.Component {
       phone: "",
       city: "",
       state: "",
-      country: ""
+      country: "",
+      admin: null
     };
     // this.onSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -30,7 +32,6 @@ export class SignUp extends React.Component {
     console.log(JSON.stringify(this.state));
     // On submit of the form, send a POST request with the data to the server.
     fetch(" http://localhost:8082/signup", {
-      mode: 'no-cors',
       body: JSON.stringify(this.state),
       cache: "no-cache",
       credentials: "same-origin",
@@ -38,13 +39,12 @@ export class SignUp extends React.Component {
         "content-type": "application/json",
       },
       method: "POST",
-      mode: "cors",
       redirect: "follow",
       referrer: "no-referrer",
     }).then(function (response) {
       console.log(response);
       if (response.status === 200) {
-
+        this.setState({admin:'admin'});
         alert("Saved");
       } else {
         alert("Issues saving");

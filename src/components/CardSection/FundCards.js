@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -48,9 +49,17 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const FundCards=({title,author,gendate, target, description,image,url})=> {
+const FundCards=({frid, title,author,gendate, target, description,image,url})=> {
   const classes = useStyles();
   const [expanded] = React.useState(false);
+  const history = useHistory();
+
+  const handleOpen = () =>{
+    history.push({
+      pathname: '/fundraiser-details',
+      search : `category=${frid}`,
+    });
+  }
 
   return (
     <Card className={classes.rootIndCard}>
@@ -81,7 +90,7 @@ const FundCards=({title,author,gendate, target, description,image,url})=> {
           })}
           aria-label="show more"
         >
-          <a rel="noopener noreferrer" target="_blank" href={url}><LaunchIcon /></a>
+          <a rel="noopener noreferrer" target="_blank" onClick={handleOpen}><LaunchIcon /></a>
         </IconButton>
       </CardActions>
     </Card>
