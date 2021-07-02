@@ -2,7 +2,7 @@ import "./styles.css";
 import React from 'react';
 
 import { Login } from "./Login";
-import { SignUp } from "./SignUp";
+import  SignUp  from "./SignUp";
 
 export class SignIn extends React.Component {
     constructor(props) {
