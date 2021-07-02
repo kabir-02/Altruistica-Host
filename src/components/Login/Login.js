@@ -1,5 +1,8 @@
 import React from "react";
 import loginImg from "../../img/login.svg";
+import Axios from 'axios';
+import { hashHistory } from 'react-router';
+
 
 export class Login extends React.Component {
   constructor(props) {
@@ -10,6 +13,33 @@ export class Login extends React.Component {
       loginStatus:''
     }
   }
+
+  login = () => {
+ 
+    Axios.post("http://localhost:8082/login", {
+      email: this.state.email,
+      password: this.state.password,
+    }).then((response) => {
+      if (response.data.message) {
+        this.state.loginStatus= response.data.message;
+        console.log("Success");
+        console.log(this.state.loginStatus)
+      } else {
+        this.state.loginStatus=response.data[0].email;
+        console.log(this.state.loginStatus);
+      }
+    });
+  };
+
+  componentWillMount = () => {
+    Axios.get("http://localhost:8082/login").then((response) => {
+      if (response.data.loggedIn == true) {
+        this.state.loginStatus = response.data.user[0].email;
+      }
+    });
+
+  }
+
 
   render() {
     return (
