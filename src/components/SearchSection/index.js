@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SearchBar from "material-ui-search-bar";
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,11 +8,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import VerticalTabSearch from './VerticalTabSearch'
-import {SearchCardData} from './SearchCardData'
-import Grid from '@material-ui/core/Grid';
-import FundCards from '../CardSection/FundCards'
 import Axios from 'axios';
-import SearchByName from './SearchByName'
+import Search from './Search.js'
 
 const fundraising= ["All", "Medical", "Education", "Environment", "Social Cause", "Home"];
 const crowdfunding= ["All", "Business", "Idea", "Project", "Product", "Research"];
@@ -74,14 +70,14 @@ export default function SearchSection() {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const [funds, setFunds] = useState([]);
+  // const [funds, setFunds] = useState([]);
 
-  useEffect(() => {
-    Axios.get("http://localhost:8082/displayfunds").then((response)=>{
-      console.log(response.data);
-      setFunds(response.data);
-    });
-  },[]);
+  // useEffect(() => {
+  //   Axios.get("http://localhost:8082/displayfunds").then((response)=>{
+  //     console.log(response.data);
+  //     setFunds(response.data);
+  //   });
+  // },[]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -120,8 +116,8 @@ export default function SearchSection() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-        <SearchByName/>
-        <Grid container spacing={3} >
+        <Search/>
+        {/* <Grid container spacing={3} >
         {funds.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -129,7 +125,7 @@ export default function SearchSection() {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <VerticalTabSearch data={fundraising} fr_class={"Fundraising"}/>

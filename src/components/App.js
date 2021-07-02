@@ -79,7 +79,7 @@ function App() {
           <Route path="/user-fundraiser">
             <UserFundraiser />
           </Route>
-          <Route path="/support-kindness">
+          <Route path="/support">
             <Gratitude />
           </Route>
           <Route path="/admin">

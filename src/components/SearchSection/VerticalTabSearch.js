@@ -5,11 +5,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import {SearchCardData} from './SearchCardData'
 import Grid from '@material-ui/core/Grid';
 import FundCards from '../CardSection/FundCards'
 import Axios from 'axios';
 import SearchByName from './SearchByName'
+import SearchByNameCat from './SearchByNameCat'
 
 import SearchBar from "material-ui-search-bar";
 
@@ -113,8 +113,8 @@ export default function VerticalTabSearch(props) {
       </Tabs>
       <TabPanel value={value} index={0}>
       <center>
-      <SearchByName />
-      <Grid   className='grid-full' container spacing={3} >
+      <SearchByName fr_class={props.fr_class}/>
+      {/* <Grid   className='grid-full' container spacing={3} >
         {funds00.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -122,13 +122,13 @@ export default function VerticalTabSearch(props) {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </center>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <center>
-      <SearchByName/>
-      <Grid className='grid-full' container spacing={3} >
+      <SearchByNameCat fr_class={props.fr_class} fr_category={1} />
+      {/* <Grid className='grid-full' container spacing={3} >
         {funds01.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -136,13 +136,13 @@ export default function VerticalTabSearch(props) {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </center>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <center>
-      <SearchByName/>
-      <Grid className='grid-full' container spacing={3} >
+      <SearchByNameCat fr_class={props.fr_class} fr_category={2}/>
+      {/* <Grid className='grid-full' container spacing={3} >
         {funds02.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -150,13 +150,13 @@ export default function VerticalTabSearch(props) {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </center>
       </TabPanel>
       <TabPanel value={value} index={3}>
       <center>
-      <SearchByName/>
-      <Grid className='grid-full' container spacing={3} >
+      <SearchByNameCat fr_class={props.fr_class} fr_category={3}/>
+      {/* <Grid className='grid-full' container spacing={3} >
         {funds03.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -164,13 +164,13 @@ export default function VerticalTabSearch(props) {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </center>
       </TabPanel>
       <TabPanel value={value} index={4}>
       <center>
-      <SearchByName/>
-      <Grid className='grid-full' container spacing={3} >
+      <SearchByNameCat fr_class={props.fr_class} fr_category={4}/>
+      {/* <Grid className='grid-full' container spacing={3} >
         {funds04.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -178,13 +178,13 @@ export default function VerticalTabSearch(props) {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </center>
       </TabPanel>
       <TabPanel value={value} index={5}>
       <center>
-      <SearchByName/>
-      <Grid className='grid-full' container spacing={3} >
+      <SearchByNameCat fr_class={props.fr_class} fr_category={5}/>
+      {/* <Grid className='grid-full' container spacing={3} >
         {funds05.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
@@ -192,7 +192,7 @@ export default function VerticalTabSearch(props) {
             </Grid>
           )
         })}
-        </Grid>
+        </Grid> */}
         </center>
       </TabPanel>
     </div>

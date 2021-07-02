@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import FundCards from '../CardSection/FundCards'
 import Axios from 'axios';
 
-export default function SearchByName(props){
+export default function Search(){
   const [searchTerm,setSearchTerm] = useState('')
   const history = useHistory();
   const handleChange = (event)=>{
@@ -29,7 +29,7 @@ export default function SearchByName(props){
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/searchfunds?class="+props.fr_class+"&criteria="+searchTerm).then((response)=>{
+    Axios.get("http://localhost:8082/searchall?criteria="+searchTerm).then((response)=>{
       setCards(response.data);
     });
   });

@@ -8,6 +8,7 @@ import Axios from 'axios';
 export default function SearchByName(props){
   const [searchTerm,setSearchTerm] = useState('')
   const history = useHistory();
+  
   const handleChange = (event)=>{
     setSearchTerm(event.target.value)
   }
@@ -29,8 +30,9 @@ export default function SearchByName(props){
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/searchfunds?class="+props.fr_class+"&criteria="+searchTerm).then((response)=>{
-      setCards(response.data);
+    Axios.get("http://localhost:8082/searchfundsbycategory?class="+props.fr_class+"&category="+props.fr_category+"&criteria="+searchTerm).then((response)=>{
+    console.log("HELP ME"+props.fr_category)  
+    setCards(response.data);
     });
   });
 
