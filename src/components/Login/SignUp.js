@@ -50,7 +50,7 @@ class SignUp extends React.Component {
     }).then(function (response) {
       console.log(response);
       if (response.status === 200) {
-        alert("Saved");
+        alert("Sign In successful!");
         //this.routeChange();
       } else {
         alert("Issues saving");
