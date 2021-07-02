@@ -35,7 +35,6 @@ export default function AdminDashboard() {
 
   const submitApproval=(fr_id)=>{
     Axios.put('http://localhost:8082/updateApprovalStatus', {fr_id: fr_id }).then((response)=>{
-      console.log(response.data);
       setApprovals(response.data);
     });
     //refreshPage();

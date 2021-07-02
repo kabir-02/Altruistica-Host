@@ -334,3 +334,7 @@ textarea{
   .grid-full{
     min-width:60vw !important;
   }
+
+  .logo-size{
+    width: 10vw !important;
+  }
