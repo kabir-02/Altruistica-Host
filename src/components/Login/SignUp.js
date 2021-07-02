@@ -1,8 +1,9 @@
 import React from "react";
 import loginImg from "../../img/login.svg";
 import Grid from "@material-ui/core/Grid";
+import { withRouter } from 'react-router-dom';
 
-export class SignUp extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +18,11 @@ export class SignUp extends React.Component {
     };
     // this.onSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.routeChange = this.routeChange.bind(this);
+  }
+
+  routeChange() {
+    this.props.history.push('/');
   }
 
   handleChange(event) {
@@ -29,6 +35,7 @@ export class SignUp extends React.Component {
     // console.log(this.state);
     console.log(JSON.stringify(this.state));
     // On submit of the form, send a POST request with the data to the server.
+    this.routeChange();
     fetch(" http://localhost:8082/signup", {
       mode: 'no-cors',
       body: JSON.stringify(this.state),
@@ -44,8 +51,8 @@ export class SignUp extends React.Component {
     }).then(function (response) {
       console.log(response);
       if (response.status === 200) {
-
         alert("Saved");
+        //this.routeChange();
       } else {
         alert("Issues saving");
       }
@@ -177,3 +184,5 @@ export class SignUp extends React.Component {
     );
   }
 }
+
+export default withRouter(SignUp);
