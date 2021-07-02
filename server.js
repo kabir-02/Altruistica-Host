@@ -5,7 +5,11 @@ const mysql = require('mysql');
 const bodyParser=require('body-parser');
 
 
-app.use(cors())
+app.use(cors({
+  origin: ["http://localhost:8001"],
+  methods: ["GET", "POST"],
+  credentials: true,
+}))
 
 PORT = 8082;
 
@@ -133,13 +137,13 @@ app.get('/displayall', (req, res) => {
   //res.end()
 });
 
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
-});
+// app.get("/login", (req, res) => {
+//   if (req.session.user) {
+//     res.send({ loggedIn: true, user: req.session.user });
+//   } else {
+//     res.send({ loggedIn: false });
+//   }
+// });
 
 app.post("/login", (req, res) => {
   const email = req.body.email;
@@ -148,7 +152,7 @@ app.post("/login", (req, res) => {
 	db.query("select * from user_info where Email = ? and Create_pw = ?",[email,password],function(error,results,fields){
         if (results.length > 0) {
             res.send({ message: "Logged in!" });
-			res.redirect("http://localhost:8001/user-profile");
+			// res.redirect("http://localhost:8001/user-profile");
         } else {
             res.send({ message: "Wrong email/password combination!" });
         }

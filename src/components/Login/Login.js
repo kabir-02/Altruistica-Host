@@ -51,7 +51,7 @@ export class Login extends React.Component {
           </div>
           <div className="form">
             <div className="form-group">
-              <label className="label-sign" htmlFor="username">Email</label>
+              <label className="label-sign" htmlFor="email">Email</label>
               <input className="signup-input" type="email" name="email" placeholder="Email" onChange = {(event) => this.setState({email:event.target.value})} />
             </div>
             <div className="form-group">
