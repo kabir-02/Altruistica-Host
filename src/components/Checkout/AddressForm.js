@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Axios from 'axios';
 
 export default function AddressForm() {
+
+  const [value, setValue] = useState([]);
+  useEffect(() => {
+    Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
+      setValue(response.data);
+    });
+  });
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -17,19 +25,10 @@ export default function AddressForm() {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="Name"
             fullWidth
             autoComplete="given-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
+            defaultValue={value.Name}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -40,10 +39,11 @@ export default function AddressForm() {
             label="City"
             fullWidth
             autoComplete="shipping address-level2"
+            defaultValue={value.City}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+          <TextField id="state" name="state" label="State/Province/Region" defaultValue={value.State} fullWidth />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -52,7 +52,7 @@ export default function AddressForm() {
             name="country"
             label="Country"
             fullWidth
-            autoComplete="shipping country"
+            defaultValue={value.Country}
           />
         </Grid>
         <Grid item xs={12}>

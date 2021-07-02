@@ -172,10 +172,10 @@ app.get('/display', (req, res) => {
 });
 
 app.get('/display-payment-details', (req, res) => {
-  const sqlSelect = "SELECT Name, City, State, Country, Mobile from user_info WHERE user_id='"+req.user_id+"';";
+  const sqlSelect = "SELECT Name, City, State, Country, Mobile_no from user_info WHERE user_id=1;";
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
-    console.log("Reads Payment Details")
+    console.log(result);
   });
   //res.end()
 });

@@ -7,10 +7,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Axios from 'axios';
 
 export default function PaymentForm() {
-  const [value, setValue] = useState([]);
+  const [val, setVal] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
-      setValue(response.data);
+      setVal(response.data);
     });
   });
 
@@ -21,7 +21,7 @@ export default function PaymentForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth autoComplete="cc-name" />
+          <TextField required id="cardName" label="Name on card" fullWidth defaultValue={val.Name}/>
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
