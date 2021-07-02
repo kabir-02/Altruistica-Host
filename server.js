@@ -160,6 +160,11 @@ app.put("/updateApprovalStatus", (req,res)=>{
     if(err)
     console.log(err);
   })
+  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline, Name, City, State FROM fundraisers, user_info WHERE fr_uid=user_id AND fr_status=0";
+  db.query(sqlSelect, (err, result)=> {
+    res.send(result);
+    console.log("Reads Approvals")
+  });
 });
 
 app.get('/fundraising', (req, res) => {

@@ -34,20 +34,23 @@ export default function AdminDashboard() {
   const history = useHistory();
 
   const submitApproval=(fr_id)=>{
-    Axios.put('http://localhost:8082/updateApprovalStatus', {fr_id: fr_id });
-    refreshPage();
+    Axios.put('http://localhost:8082/updateApprovalStatus', {fr_id: fr_id }).then((response)=>{
+      console.log(response.data);
+      setApprovals(response.data);
+    });
+    //refreshPage();
   };
 
-  const refreshPage=()=>{
-    history.push({
-      pathname: '/admin',
-      search : `update`,
-    });
-  }
+  // const refreshPage=()=>{
+  //   history.push({
+  //     pathname: '/admin',
+  //     search : `update`,
+  //   });
+  // }
 
   useEffect(() => {
     Axios.get("http://localhost:8082/displayapprovals").then((response)=>{
-      // console.log(response.data);
+      console.log(response.data);
       setApprovals(response.data);
     });
   },[]);
