@@ -27,6 +27,7 @@ export default function Gratitude() {
   const [searchTerm,setSearchTerm] = useState('')
 
   const handleChange = (event)=>{
+    //console.log(event.target.value);
     setSearchTerm(event.target.value)
   }
 
@@ -55,7 +56,7 @@ export default function Gratitude() {
       setSupport(response.data);
       console.log(response.data)
     });
-  },[]); 
+  },[searchTerm]); 
   
   return (
     <>
