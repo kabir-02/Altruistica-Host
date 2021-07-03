@@ -338,3 +338,7 @@ textarea{
   .logo-size{
     width: 8vw !important;
   }
+
+  .color-black{
+    color:black;
+  }
