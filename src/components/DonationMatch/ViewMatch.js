@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function VievMatch() {
+export default function VievMatch(props) {
   const classes = useStyles();
 
   
