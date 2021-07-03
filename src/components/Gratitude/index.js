@@ -45,10 +45,9 @@ export default function Gratitude() {
   
   }
 
-  const handleClick = () =>{
+  const handleClick = (user_id) =>{
     history.push({
-      pathname: '/checkout',
-      search : `uid=2`,
+      pathname: `/checkout/${user_id}`,
     });
   }
 
@@ -80,7 +79,7 @@ export default function Gratitude() {
             </ListItemAvatar>
             <ListItemText  primary={data.Name} />
             <ListItemSecondaryAction>
-            <Button type="button" variant="outline-success" onClick={handleClick} ><SendIcon/></Button>
+            <Button type="button" variant="outline-success" onClick={() => handleClick(data.user_id)} ><SendIcon/></Button>
             </ListItemSecondaryAction>
           </ListItem>
         );

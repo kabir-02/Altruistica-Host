@@ -202,7 +202,14 @@ app.put("/updateApprovalStatus", (req,res)=>{
     console.log("Reads Approvals")
   });
 });
-
+app.post("/submitPayment", (req,res)=>{
+  const amount=req.body.amount;
+  const anon=req.body.anon;
+  const sqlInsert="INSERT INTO support (s_bid, s_amount, s_did, s_anon) VALUES('2','"+amount+"'1,'"+anon+"');"
+  db.query(sqlInsert,(err, result)=>{
+    console.log(result)
+  })
+});
 app.get('/fundraising', (req, res) => {
   const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_status=1 AND fr_class='Fundraising";
   db.query(sqlSelect, (err, result)=> {

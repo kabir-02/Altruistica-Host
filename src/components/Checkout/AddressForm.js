@@ -60,12 +60,6 @@ export default function AddressForm() {
             defaultValue={value.Country}
           />
         </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel className='black-label'
-            control={<Checkbox color="secondary" name="anonymous" value="yes" />}
-            label="Anonymous" 
-          />
-        </Grid>
       </Grid>
       )
     })}

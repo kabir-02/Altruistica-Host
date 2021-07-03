@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import {Button, Checkbox} from '@material-ui/core';
 import Axios from 'axios';
 
 
@@ -11,12 +11,13 @@ import Axios from 'axios';
 export default function PaymentForm() {
   const [val, setVal] = useState([]);
   const [amount, setAmount] = useState([]);
+  const [anon, setAnon]=useState([]);
 
-  // const submitPayment=(_id)=>{
-  //   Axios.put('http://localhost:8082/complete-payment', {uid: fr_id }).then((response)=>{
-  //     setApprovals(response.data);
-  //   });
-  // };
+  const submitPayment=()=>{
+    Axios.post('http://localhost:8082/complete-payment', {amount: amount, anonymous:anon }).then(()=>{
+     alert("Successful Insert");
+    });
+  };
   useEffect(() => {
     Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
       setVal(response.data);
@@ -62,16 +63,24 @@ export default function PaymentForm() {
             required
             id="amount"
             label="Donation Amount"
+            onChange={(e)=>{setAmount(e.target.value)}}
             fullWidth
             autoComplete="cc-csc"
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <FormControlLabel className='black-label'
             control={<Checkbox color="secondary" name="saveCard" value="yes" />}
             label="Remember credit card details for next time"
           />
+        </Grid> */}
+        <Grid item xs={12}>
+          <FormControlLabel className='black-label'
+            control={<Checkbox color="secondary" name="anonymous" value="1" />}
+            label="Donate Anonymously"  onChange={(e)=>{setAnon(e.target.value)}}
+          />
         </Grid>
+        <Button onClick={submitPayment} >Confirm</Button>
       </Grid>
       )
     })}
