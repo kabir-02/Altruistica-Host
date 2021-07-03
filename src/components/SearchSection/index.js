@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -8,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import VerticalTabSearch from './VerticalTabSearch'
-import Axios from 'axios';
 import Search from './Search.js'
 
 const fundraising= ["All", "Medical", "Education", "Environment", "Social Cause", "Home"];

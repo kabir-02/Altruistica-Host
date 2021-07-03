@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Video from '../../img/video.mp4'
-import { HeroContainer, HeroContent, HeroBg, VideoBg, HeroH1, HeroP, HeroBtnWrapper, ArrowForward, ArrowRight } from './HeroElements';
+import { HeroContainer, HeroContent, HeroBg, VideoBg, HeroH1, HeroP } from './HeroElements';
 import { Button } from '../ButtonElement'
 import Grid from '@material-ui/core/Grid';
 

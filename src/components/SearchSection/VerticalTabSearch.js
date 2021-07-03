@@ -1,17 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import FundCards from '../CardSection/FundCards'
-import Axios from 'axios';
 import SearchByName from './SearchByName'
 import SearchByNameCat from './SearchByNameCat'
-
-import SearchBar from "material-ui-search-bar";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -60,33 +55,33 @@ const useStyles = makeStyles((theme) => ({
 export default function VerticalTabSearch(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [funds00, setFunds00] = useState([]);
-  const [funds01, setFunds01] = useState([]);
-  const [funds02, setFunds02] = useState([]);
-  const [funds03, setFunds03] = useState([]);
-  const [funds04, setFunds04] = useState([]);
-  const [funds05, setFunds05] = useState([]);
+  // const [funds00, setFunds00] = useState([]);
+  // const [funds01, setFunds01] = useState([]);
+  // const [funds02, setFunds02] = useState([]);
+  // const [funds03, setFunds03] = useState([]);
+  // const [funds04, setFunds04] = useState([]);
+  // const [funds05, setFunds05] = useState([]);
 
-  useEffect(() => {
-    Axios.get("http://localhost:8082/displayall?class="+props.fr_class).then((response)=>{
-      setFunds00(response.data);
-    });
-    for( let i = 1; i<=props.data.length; i++)
-    {
-      Axios.get("http://localhost:8082/display?class="+props.fr_class+"&category="+i).then((response)=>{
-      // console.log(response.data);
-      // console.log("This is value"+ value);
-      // console.log(props.data.length);
-      switch(i){
-        case 1: setFunds01(response.data); break;
-        case 2: setFunds02(response.data); break;
-        case 3: setFunds03(response.data); break;
-        case 4: setFunds04(response.data); break;
-        case 5: setFunds05(response.data); break;
-      }
-    });
-  }
-  },[]);
+  // useEffect(() => {
+  //   Axios.get("http://localhost:8082/displayall?class="+props.fr_class).then((response)=>{
+  //     setFunds00(response.data);
+  //   });
+  //   for( let i = 1; i<=props.data.length; i++)
+  //   {
+  //     Axios.get("http://localhost:8082/display?class="+props.fr_class+"&category="+i).then((response)=>{
+  //     // console.log(response.data);
+  //     // console.log("This is value"+ value);
+  //     // console.log(props.data.length);
+  //     switch(i){
+  //       case 1: setFunds01(response.data); break;
+  //       case 2: setFunds02(response.data); break;
+  //       case 3: setFunds03(response.data); break;
+  //       case 4: setFunds04(response.data); break;
+  //       case 5: setFunds05(response.data); break;
+  //     }
+  //   });
+  // }
+  // },[]);
   
 
   const handleChange = (event, newValue) => {

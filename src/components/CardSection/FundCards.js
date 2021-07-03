@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory} from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import {Button, Card }from "@material-ui/core";
@@ -16,13 +15,6 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import {
-  EmailShareButton, EmailIcon,
-  FacebookShareButton, FacebookIcon,
-  LinkedinShareButton, LinkedinIcon,
-  TwitterShareButton, TwitterIcon,
-  WhatsappShareButton, WhatsappIcon,
-} from "react-share";
 
 const useStyles = makeStyles((theme) => ({
   rootIndCard: {
@@ -74,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
 const FundCards=({frid, title, description,gendate, target, deadline, image, url})=> {
   const classes = useStyles();
   const [expanded] = React.useState(false);
-  const history = useHistory();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {

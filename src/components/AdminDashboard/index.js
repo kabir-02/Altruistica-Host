@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useHistory} from 'react-router-dom'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 export default function AdminDashboard() {
   const classes = useStyles();
   const [approvals, setApprovals] = useState([]);
-  const history = useHistory();
 
   const submitApproval=(fr_id)=>{
     Axios.put('http://localhost:8082/updateApprovalStatus', {fr_id: fr_id }).then((response)=>{

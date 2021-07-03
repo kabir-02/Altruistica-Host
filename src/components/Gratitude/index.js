@@ -10,7 +10,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Axios from 'axios';
 import { useHistory} from 'react-router-dom'
 import { Form, FormControl, Button}  from 'react-bootstrap'
-import { ConsoleWriter } from 'istanbul-lib-report';
 
 const useStyles = makeStyles((theme) => ({
   root: {
