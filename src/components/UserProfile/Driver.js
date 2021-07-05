@@ -132,9 +132,8 @@ export default function Driver({ id }) {
             src={driver.img}
             classes={{ root: classes.avatar, circle: classes.circle }}
           />
-          <Typography variant={"h5"}>{driver.name}</Typography>
+          <Typography variant={"h5"} >{driver.name}</Typography>
           <Chip variant={"outlined"}  label="India" />
-          <Rating name="read-only" value={4.3} readOnly />
           <div className={classes.spacer} />
           <div className={classes.actionGroup}>
              <Button
@@ -145,7 +144,6 @@ export default function Driver({ id }) {
                 >
                   Be Eligible for Gratitude Donations
                 </Button>
-            />
           </div>
         </div>
       </div>
@@ -190,7 +188,7 @@ export default function Driver({ id }) {
         title={
           <React.Fragment>
             <Typography color="inherit"></Typography>
-           {"Gained Al Coins? It's time to see how you can use them to the fullest."}
+           {"Gained AL Coins? It's time to see how you can use them to the fullest."}
           </React.Fragment>
         }
       >
@@ -204,7 +202,7 @@ export default function Driver({ id }) {
       <div className={classes.summaryCards}>
         <SummaryCard title={"Amount Donated"} value={"Rs " + amount} />
         <SummaryCard title={"No. of Donations"} value={donations} />
-        <SummaryCard title={"Al Coins"} value={allCoins} />
+        <SummaryCard title={"AL Coins"} value={allCoins} />
         <SummaryCard title={"Ranking"} value={rank} />
       </div>
       <div className={classes.summaryCards}>
