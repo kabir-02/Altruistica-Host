@@ -316,9 +316,12 @@ textarea{
 
 
 .upsi{
-  width:25rem !important;
+  width:10rem !important;
 }
 
+.dialog-margin{
+  padding:2rem!important;
+}
 .social-media-icon{
   margin:2px;
 }

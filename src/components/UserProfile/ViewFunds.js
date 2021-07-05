@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import { Button } from "../ButtonElement"
+import { withStyles } from "@material-ui/core/styles"
+import Dialog from "@material-ui/core/Dialog"
+import MuiDialogTitle from "@material-ui/core/DialogTitle"
+import MuiDialogContent from "@material-ui/core/DialogContent"
+import MuiDialogActions from "@material-ui/core/DialogActions"
+import IconButton from "@material-ui/core/IconButton"
+import CloseIcon from "@material-ui/icons/Close"
+import Typography from "@material-ui/core/Typography"
+import Tooltip from "@material-ui/core/Tooltip"
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove, selectPeople, selectLoading } from "./peopleSlice";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -15,9 +25,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import Toolbar from "@material-ui/core/Toolbar";
 import PeopleDialog from "./PeopleDialog";
-import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
-import Tooltip from "@material-ui/core/Tooltip";
 import DeletePeopleDialog from "./DeletePeopleDialog";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { SummaryCard } from "./Driver";
@@ -73,6 +81,60 @@ const headCells = [
   { id: "id", numeric: true, disablePadding: false, label: "ID" },
   { id: "amount", numeric: true, disablePadding: false, label: "Amount" },
 ];
+
+const HtmlTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: "1px solid #dadde9",
+  },
+}))(Tooltip)
+
+const styles = theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+})
+
+const DialogTitle = withStyles(styles)(props => {
+  const { children, classes, onClose, ...other } = props
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant='h6'>{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label='close'
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  )
+})
+
+const DialogContent = withStyles(theme => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent)
+
+const DialogActions = withStyles(theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions)
 
 function EnhancedTableHead(props) {
   const {
@@ -174,6 +236,18 @@ export default function People() {
   const rows = useSelector(selectPeople);
   const loading = useSelector(selectLoading);
   const error = false;
+  const [hover, setHover] = useState(false)
+  const onHover = () => {
+    setHover(!hover)
+  }
+  const [open, setOpen] = React.useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
   // todo with snacks
   const [snackOpen, setSnackOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -244,67 +318,40 @@ export default function People() {
   };
 
   return (
-    <div style={{
-      marginTop: '60px',
-  }}>
+    <>
+    <HtmlTooltip
+        title={
+          <React.Fragment>
+            <Typography color="inherit"></Typography>
+           {"Check out your previous funds."}{' '}
+            {"Edit, update and delete as you like."}
+          </React.Fragment>
+        }
+      >
+      <Button onMouseEnter={onHover}
+          onMouseLeave={onHover}
+          onClick={handleClickOpen}>
+      Fund List
+            </Button>
+      </HtmlTooltip>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby='customized-dialog-title'
+        open={open}
+      >
+        <DialogTitle id='customized-dialog-title' onClose={handleClose}>
+        My Fundraisers!
+        </DialogTitle>
+        <hr/>
     <Content>
       <Snackbar open={snackOpen} autoHideDuration={2000} onClose={snackClose}>
         <Alert onClose={snackClose} severity="success">
           {snackOpen}
         </Alert>
       </Snackbar>
-      <div className={classes.root}>
-        <Toolbar>
-          <div edge="start" className={classes.grow} />
-          <PeopleDialog
-            edge="end"
-            onSave={() => {
-              setSnackOpen("Person added");
-            }}
-            render={(open) => (
-              <Button
-                edge="end"
-                color="primary"
-                variant="contained"
-                startIcon={<AddIcon />}
-                onClick={open}
-              >
-                Add Person
-              </Button>
-            )}
-          />
-          {selected.length > 0 && (
-            <Tooltip title={"Delete"}>
-              <DeletePeopleDialog
-                ids={selected}
-                onSave={() => {
-                  dispatch(remove(selected));
-
-                  setSnackOpen(
-                    `${selected.length} Driver${
-                      selected.length > 1 ? "s" : ""
-                    } Deleted`
-                  );
-                  setSelected([]);
-                }}
-                render={(open) => (
-                  <Button
-                    className={classes.deleteButton}
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    onClick={open}
-                  >
-                    {" "}
-                    Delete {selected.length} selected
-                  </Button>
-                )}
-              />
-            </Tooltip>
-          )}
-        </Toolbar>
+      <div>
         <SummaryCard
-          title={"Drivers"}
+          title={"Fundraisers Created"}
           value={
             <>
               <TableContainer>
@@ -346,7 +393,6 @@ export default function People() {
                               ) {
                                 return;
                               }
-                              history.push(`/people/${row.id}`);
                             }}
                             key={`person-${row.id}`}
                             selected={isItemSelected}
@@ -399,6 +445,7 @@ export default function People() {
         />
       </div>
     </Content>
-    </div>
+    </Dialog>
+    </>
   );
 }

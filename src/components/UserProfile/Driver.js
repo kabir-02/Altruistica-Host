@@ -5,13 +5,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
-import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Rating from "@material-ui/lab/Rating";
 import DonationLine from "./DonationLine";
-import PeopleDialog from "./PeopleDialog";
 import { useSelector } from "react-redux";
 import { selectPeople } from "./peopleSlice";
 import DonationsTable from "./DonationsTable";
@@ -19,8 +16,10 @@ import VehiclePie from "./VehiclePie"
 import { Button } from '../ButtonElement'
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
-import DialogEditFund from './DialogEditFund';
 import CreateFund from './CreateFund';
+import UseAlcoins from './UseAlcoins';
+import EditProfile from './EditProfile';
+import ViewFunds from './ViewFunds';
 
 const HtmlTooltip = withStyles((theme) => ({
     tooltip: {
@@ -150,52 +149,18 @@ export default function Driver({ id }) {
       <Grid container spacing={3} >
         <Grid item xs={12} sm={3}> 
                 <CreateFund/>
-                </Grid>
-
-        <Grid item xs={12} sm={3}>
-        <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography color="inherit"></Typography>
-           {"Check out your previous funds."}{' '}
-            {"Edit, update and delete as you like."}
-          </React.Fragment>
-        }
-      >
-      <Button to='/view-funds' onMouseEnter = {onHover} onMouseLeave = {onHover} >
-      Fund List
-            </Button>
-            </HtmlTooltip>
-      </Grid>
-
-      <Grid item xs={12} sm={3}>
-        <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography color="inherit"></Typography>
-           {"Check out your profile. Add fields, update whatever you want to."}{' '}
-          </React.Fragment>
-        }
-      >
-      <Button to='/use-alcoins' onMouseEnter = {onHover} onMouseLeave = {onHover}>
-      Use AL Coins
-        </Button>
-        </HtmlTooltip>
         </Grid>
 
         <Grid item xs={12} sm={3}>
-        <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography color="inherit"></Typography>
-           {"Gained AL Coins? It's time to see how you can use them to the fullest."}
-          </React.Fragment>
-        }
-      >
-      <Button to='/edit-profile' onMouseEnter = {onHover} onMouseLeave = {onHover}>
-      Edit Profile
-        </Button>
-        </HtmlTooltip>
+          <ViewFunds/>
+        </Grid>
+      
+        <Grid item xs={12} sm={3}>
+        <UseAlcoins/>
+        </Grid>
+
+        <Grid item xs={12} sm={3}>
+       <EditProfile/>
         </Grid>
 
         </Grid>

@@ -1,13 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles"
+import MuiDialogTitle from "@material-ui/core/DialogTitle"
+import MuiDialogContent from "@material-ui/core/DialogContent"
+import MuiDialogActions from "@material-ui/core/DialogActions"
+import IconButton from "@material-ui/core/IconButton"
+import CloseIcon from "@material-ui/icons/Close"
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Button } from "../ButtonElement"
+import Dialog from "@material-ui/core/Dialog"
+import Tooltip from "@material-ui/core/Tooltip"
 
+const styles = theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+})
+
+const HtmlTooltip = withStyles(theme => ({
+  tooltip: {
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(12),
+    border: "1px solid #dadde9",
+  },
+}))(Tooltip)
 const useStyles = makeStyles((theme) => ({
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -17,14 +46,90 @@ const useStyles = makeStyles((theme) => ({
     secondaryHeading: {
       fontSize: theme.typography.pxToRem(15),
       color: theme.palette.text.secondary,
-    },
+    }, 
+    
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
   }));
+
+
+  const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant='h6'>{children}</Typography>
+        {onClose ? (
+          <IconButton
+            aria-label='close'
+            className={classes.closeButton}
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    )
+  })
+  
+  const DialogContent = withStyles(theme => ({
+    root: {
+      padding: theme.spacing(2),
+    },
+  }))(MuiDialogContent)
+  
+  const DialogActions = withStyles(theme => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1),
+    },
+  }))(MuiDialogActions)
+
 
 export default function UseAlcoins() {
     const classes = useStyles();
+    const [hover, setHover] = useState(false)
+  const onHover = () => {
+    setHover(!hover)
+  }
+  const [open, setOpen] = React.useState(false)
+
+    const handleClickOpen = () => {
+      setOpen(true)
+    }
+    const handleClose = () => {
+      setOpen(false)
+    }
   return (
-    <div className='info-section' id='blog'>
-    <h2 className="title-section donh">Hooray! Here's how you can use your Alcoins!</h2>
+      <>
+     
+        <HtmlTooltip
+        title={
+          <React.Fragment>
+            <Typography color="inherit"></Typography>
+           {"Gained AL Coins? It's time to see how you can use them to the fullest."}{' '}
+          </React.Fragment>
+        }
+      >
+      <Button onMouseEnter={onHover}
+          onMouseLeave={onHover}
+          onClick={handleClickOpen}>
+      Use AL Coins
+        </Button>
+        </HtmlTooltip>
+        <Dialog
+        onClose={handleClose}
+        aria-labelledby='customized-dialog-title'
+        open={open}
+      >
+
+
+<DialogTitle id='customized-dialog-title' onClose={handleClose}>
+          Here's how you can use your AL Coins!
+        </DialogTitle>
     <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -73,7 +178,7 @@ export default function UseAlcoins() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-    </div>
-    
+      </Dialog>
+    </>
   );
 }
