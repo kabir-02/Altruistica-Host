@@ -57,6 +57,7 @@ export default function Features() {
         </Grid>
       </Grid>
       <br/> <br/>
+      <h2>SUCCESSFUL FUNDRAISERS</h2>
       <SingleLineGridList/>
     </div>
   );

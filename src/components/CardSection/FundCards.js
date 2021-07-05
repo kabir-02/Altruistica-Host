@@ -18,7 +18,8 @@ import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
   rootIndCard: {
-    maxWidth: 345
+    maxWidth: 345,
+    height:475
   },
   media: {
     height: 0,
