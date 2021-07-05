@@ -23,7 +23,6 @@ import UseAlcoins from './UserProfile/UseAlcoins';
 import EditProfile from './UserProfile/EditProfile';
 import AdminDashboard from './AdminDashboard'
 import Fundraiser from './Fundraiser'
-import UserFundraiser from './UserProfile/UserFundraiser'
 import Gratitude from './Gratitude'
 import Checkout from './Checkout/Checkout'
 
@@ -74,9 +73,6 @@ function App() {
           </Route>
           <Route path="/fundraiser">
             <Fundraiser />
-          </Route>
-          <Route path="/user-fundraiser">
-            <UserFundraiser />
           </Route>
           <Route path="/support">
             <Gratitude />

@@ -136,7 +136,7 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
                 <br/>
                 Deadline: {deadline.split("T")[0]}
               </center>
-              <Button><a rel="noopener noreferrer" target="_blank" href='/checkout' className="background-purple">DONATE NOW</a></Button>
+              <Button className="background-purple"><a rel="noopener noreferrer" className="no-link" target="_blank" href='/checkout' >DONATE NOW</a></Button>
             </div>
             </div>
         </Fade>

@@ -428,3 +428,9 @@ height:350px;
   .close-class{
     display:none;
   }
+
+  .white-btn{
+    background-color:#fff!important;
+    color:#800080!important;
+    margin-left:1rem;
+  }

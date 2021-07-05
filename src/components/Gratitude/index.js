@@ -66,7 +66,7 @@ export default function Gratitude() {
     <Form onKeyDown={handleKeyDown} inline className="form-center">
           <FormControl type="text" placeholder="Search" value={searchTerm}
            className="mr-sm-2 inp" onChange={handleChange}/>
-          <Button type="button" variant="outline-success" onClick={handleSearch} >Search</Button>
+          <Button type="button" variant="outline-success" onClick={handleSearch} className="white-btn">Search</Button>
     </Form>    
     <List dense className={classes.root}>
       {support.map((data, index) => {
