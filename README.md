@@ -1,4 +1,4 @@
-# Altruistica help repository!
+# Altruistica by Pentagon
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is a 4-in-1 donation system which includes Crowdfunding, Fundraising, Crowdsourcing and Auctioning. 
 
 ## Steps to follow:
@@ -21,8 +21,7 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 ### Running the server
 
-In a separate terminal, type `node server.js` to get the server running. To test whether it is running, you can load `https://localhost:8082` and a 'Hello World; will be displayed.
-
+In a separate terminal, type `node server.js` to get the server running.
 
 ##  Other Commands - Don't use right now!
 
