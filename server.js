@@ -242,7 +242,7 @@ app.get('/fundraising', (req, res) => {
 });
 
 app.get('/searchall', (req, res) => {
-  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_title LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT fr_title, fr_image, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_title LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });
@@ -250,7 +250,7 @@ app.get('/searchall', (req, res) => {
 });
 
 app.get('/searchfunds', (req, res) => {
-  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT fr_title, fr_image, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });
@@ -258,7 +258,7 @@ app.get('/searchfunds', (req, res) => {
 });
 
 app.get('/searchfundsbycategory', (req, res) => {
-  const sqlSelect = "SELECT fr_id, fr_title, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_category='"+req.query.category+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
+  const sqlSelect = "SELECT  fr_title, fr_image, fr_desc, fr_gentime, fr_target, fr_deadline FROM fundraisers WHERE fr_class='"+req.query.class+"' AND fr_category='"+req.query.category+"' AND fr_title LIKE '%"+req.query.criteria+"%';"
   db.query(sqlSelect, (err, result)=> {
     res.send(result);
   });

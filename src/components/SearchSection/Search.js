@@ -45,7 +45,7 @@ export default function Search(){
         {cards.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
-            <FundCards id ={data.fr_id} title={data.fr_title} description={data.fr_desc} gendate={data.fr_gentime} target={data.fr_target} deadline={data.fr_deadline} image={data.image} url={data.url} />
+            <FundCards title={data.fr_title} image={data.fr_image} description={data.fr_desc} gendate={data.fr_gentime} target={data.fr_target} deadline={data.fr_deadline}  />
             </Grid>
           )
         })}

@@ -119,7 +119,7 @@ export default function Checkout(props) {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Complete Donation' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>

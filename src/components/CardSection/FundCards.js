@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const FundCards=({frid, title, description,gendate, target, deadline, image, url})=> {
+const FundCards=({title, image, description,gendate, target, deadline})=> {
   const classes = useStyles();
   const [expanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -125,6 +125,7 @@ const FundCards=({frid, title, description,gendate, target, deadline, image, url
           <h2 className="color-black">{title}</h2>
             <div className={classes.rootCard}>
               <center>
+                <img src={image} className="fit-donor"/>
                 <p>{description}</p>
                 <br/>
                 Target: {target}
