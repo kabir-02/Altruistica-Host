@@ -62,7 +62,7 @@ export class Login extends React.Component {
         </div>
         <div className="footer">
           <button type="button" className="btn" onClick={(event) => this.login(event)} >
-            Login
+            <a className="no-link" href="/user-profile">Login</a>
           </button>
         </div>
         <h1>{this.state.loginStatus}</h1>

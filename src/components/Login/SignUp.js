@@ -23,7 +23,7 @@ class SignUp extends React.Component {
   }
 
   routeChange() {
-    this.props.history.push('/');
+    this.props.history.push('/user-profile');
   }
 
   handleChange(event) {

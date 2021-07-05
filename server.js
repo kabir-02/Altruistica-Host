@@ -3,7 +3,9 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser=require('body-parser');
-
+const bcrypt=require("bcrypt");
+const session=require('express-session');
+const cookieParser = require('cookie-parser');
 
 app.use(cors({
   origin: ["http://localhost:8001"],
@@ -33,10 +35,20 @@ app.use(
     extended: true
   })
 )
-
+app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
-
+app.use(session({
+  key:"userId",
+  secret: "altruistica",
+  resave: false,
+  saveUnitialized: false,
+  cookie:{
+    expires:60*60*24,
+  },
+})
+);
 app.use(express.json())
+app.use(cookieParser())
 
 // app.post('/initial_signup', (req, res) => {
 //   var users= req.body;
@@ -137,29 +149,39 @@ app.get('/displayall', (req, res) => {
   //res.end()
 });
 
-// app.get("/login", (req, res) => {
-//   if (req.session.user) {
-//     res.send({ loggedIn: true, user: req.session.user });
-//   } else {
-//     res.send({ loggedIn: false });
-//   }
-// });
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
 
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
 	db.query("select * from user_info where Email = ? and Create_pw = ?",[email,password],function(error,results,fields){
-        if (results.length > 0) {
-            res.send({ message: "Logged in!" });
-			// res.redirect("http://localhost:8001/user-profile");
-        } else {
-            res.send({ message: "Wrong email/password combination!" });
+    if(error) {
+      res.send({err:err});
+    }
+    if (results.length > 0) {         
+          bcrypt.compare(password, results[0].Create_pw, (err, response)=>{
+             if(!response){
+              req.session.user=results;
+              console.log(req.session.user);
+              res.send({ message: "Logged in!" });
+            }
+            else{
+              res.send({ message: "Wrong email/password combination!" });
+            }
+          });
+        }else{
+          res.send({message:"User doesn't exist"});
         }
-        res.end();
-    })
-
+      });
  });
+
 
 
 app.get('/display', (req, res) => {

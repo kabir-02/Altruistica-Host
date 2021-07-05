@@ -342,3 +342,8 @@ textarea{
   .color-black{
     color:black;
   }
+
+  .no-link{
+    text-decoration: none!important;
+    color:white!important;
+  }
