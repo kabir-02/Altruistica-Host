@@ -10,11 +10,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import LaunchIcon from '@material-ui/icons/Launch';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import ChatIcon from '@material-ui/icons/Chat';
+import { withStyles} from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   rootIndCard: {
@@ -25,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%" // 16:9
   },
   large:{
-    width: theme.spacing(5),
-    height: theme.spacing(5),
+    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
   expand: {
     transform: "rotate(0deg)",
@@ -61,9 +63,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const HtmlTooltip = withStyles((theme) => ({
+    tooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 220,
+      fontSize: theme.typography.pxToRem(12),
+      border: '1px solid #dadde9',
+    },
+  }))(Tooltip);
 
 
-const FundCards=({title, image, description,gendate, target, deadline})=> {
+const DonorCards=({ title, author, description, date, target, image})=> {
   const classes = useStyles();
   const [expanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -81,7 +92,7 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
     <Card className={classes.rootIndCard}>
       <CardHeader
         title={title}
-        subheader={gendate.split("T")[0]}
+        subheader={date}
       />
       <CardMedia
         className={classes.media}
@@ -89,23 +100,27 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
+        By: {author}<br/>
         Target: {target}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <WhatsappShareButton className="social-media-icon" url={`Check out ${title}: ${url}`}><WhatsappIcon size={32} round={true}/></WhatsappShareButton>
-        <FacebookShareButton className="social-media-icon" url={url} quote={`Check out ${title}: `}><FacebookIcon size={32} round={true}/></FacebookShareButton>
-        <EmailShareButton className="social-media-icon" url={`Check out {title} at ${url}`} subject={title}><EmailIcon size={32} round={true}/></EmailShareButton>
-        <LinkedinShareButton className="social-media-icon" url={url} title={`Check out ${title} at `} summary={description}><LinkedinIcon size={32} round={true}/></LinkedinShareButton>
-        <TwitterShareButton className="social-media-icon" url={`Check out ${title} at ${url}`}><TwitterIcon size={32} round={true}/></TwitterShareButton> */}
-        <a rel="noopener noreferrer" target="_blank" href='/checkout'><MonetizationOnOutlinedIcon className={classes.large}/></a>
+      <HtmlTooltip
+        title={
+          <React.Fragment>
+            <Typography color="inherit">Coming Soon!</Typography>
+          </React.Fragment>
+        }
+      >
+        <ChatIcon className={classes.large}/>
+      </HtmlTooltip>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
           })}
           aria-label="show more"
         >
-          <a rel="noopener noreferrer" target="_blank" onClick={handleOpen}><LaunchIcon /></a>
+          <a onClick={handleOpen}><LaunchIcon /></a>
         </IconButton>
         <Modal
         aria-labelledby="transition-modal-title"
@@ -125,16 +140,19 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
           <h2 className="color-black">{title}</h2>
             <div className={classes.rootCard}>
               <center>
-                <img src={image} className="fit-donor"/>
+                  <img src={image} className="fit-donor"></img>
                 <p>{description}</p>
-                <br/>
-                Target: {target}
-                <br/> 
-                Published On: {gendate.split("T")[0]}
-                <br/>
-                Deadline: {deadline.split("T")[0]}
               </center>
-              <Button><a rel="noopener noreferrer" target="_blank" href='/checkout' className="background-purple">DONATE NOW</a></Button>
+              <HtmlTooltip
+        title={
+          <React.Fragment>
+            <Typography color="inherit">Coming Soon!</Typography>
+          </React.Fragment>
+        }
+      >
+        <Button className="background-purple">CONNECT WITH DONOR</Button>
+      </HtmlTooltip>
+              
             </div>
             </div>
         </Fade>
@@ -144,4 +162,4 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
   );
 }
 
-export default FundCards;
+export default DonorCards;

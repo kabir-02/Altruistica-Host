@@ -36,7 +36,7 @@ export default function VievMatch(props) {
         {DonorMatchData.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
-            <DonorCards title={data.title} author={data.author} date={data.date} description={data.description} image={data.image} url={data.url} />
+            <DonorCards title={data.title} author={data.author} date={data.date} description={data.description} image={data.image} target={data.target} />
             </Grid>
           )
         })}

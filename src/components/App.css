@@ -351,3 +351,8 @@ textarea{
   .fit-donor{
     width:250px !important;
   }
+
+  .background-purple{
+    background-color: #800080!important;
+    color:white!important;
+  }
