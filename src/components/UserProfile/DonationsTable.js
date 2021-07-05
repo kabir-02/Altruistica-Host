@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment';
-import { DataContext } from './DataProvider';
+import {FundraiserData} from './FundraiserData';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -21,8 +21,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function DonationsTable() {
   const classes = useStyles();
-  const { data } = useContext(DataContext);
-  const rows = Object.values(data);
   return (
     <React.Fragment>
       <Table size="small">
@@ -36,24 +34,19 @@ export default function DonationsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {FundraiserData.map(row => (
             <TableRow key={row.id}>
-              <TableCell>{moment(row.date).format('MM/DD/YYYY')}</TableCell>
+              <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.shipTo}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>
               <TableCell align="right">
-                Rs {row.amount.toLocaleString()}
+                Rs {row.amount}
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more!
-        </Link>
-      </div>
     </React.Fragment>
   );
 }

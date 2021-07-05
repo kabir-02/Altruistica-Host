@@ -104,7 +104,7 @@ export default function Driver({ id }) {
   const rows = useSelector(selectPeople);
   let driver = rows.find((row) => row.id === +id);
   if (!driver) {
-    driver = { name: "Anna Raja", id: 3, img: "https://th.bing.com/th/id/Rf0fcbc9bb7d6f186d0cd99e58fed41db?rik=kfCiRVmGTQ0CCg&riu=http%3a%2f%2f2.bp.blogspot.com%2f-wk-Hijnxj0g%2fTs3HDjxQJFI%2fAAAAAAAACFE%2fOHUv6ya_PZw%2fs1600%2fnara%2bRohit%2bsolo.jpg&ehk=Chc%2fJXTxfQp2HhwfnEiVmmhhyOdE6iROHg5NyOMjszY%3d&risl=&pid=ImgRaw" };
+    driver = { name: "Vritika Naik", id: 3, img: "https://images.unsplash.com/photo-1520635360276-79f3dbd809f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80" };
   }
   const classes = useStyles();
   const loading = false;
@@ -117,10 +117,10 @@ export default function Driver({ id }) {
     );
   }
 
-  const donations = 4;
-  const amount = 10000;  
+  const donations = 5;
+  const amount = 55500;  
   const allCoins = amount/10;
-  const rank=10;
+  const rank=2;
   return (
     <Content>
       <div className={classes.headerContainer} style={{
@@ -137,22 +137,15 @@ export default function Driver({ id }) {
           <Rating name="read-only" value={4.3} readOnly />
           <div className={classes.spacer} />
           <div className={classes.actionGroup}>
-            <PeopleDialog
-              data={driver}
-              render={(open) => (
-                <Button
+             <Button
                   color="primary"
                   variant="contained"
                   startIcon={<EditIcon />}
-                  onClick={open}
+                  
                 >
-                  Edit
+                  Be Eligible for Gratitude Donations
                 </Button>
-              )}
             />
-            <Button variant="outlined" startIcon={<DeleteIcon />}>
-              Delete
-            </Button>
           </div>
         </div>
       </div>
@@ -202,7 +195,7 @@ export default function Driver({ id }) {
         }
       >
       <Button to='/edit-profile' onMouseEnter = {onHover} onMouseLeave = {onHover}>
-      View Profile
+      Edit Profile
         </Button>
         </HtmlTooltip>
         </Grid>

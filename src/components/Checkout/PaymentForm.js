@@ -80,7 +80,6 @@ export default function PaymentForm() {
             label="Donate Anonymously"  onChange={(e)=>{setAnon(e.target.value)}}
           />
         </Grid>
-        <Button onClick={submitPayment} >Confirm</Button>
       </Grid>
       )
     })}
