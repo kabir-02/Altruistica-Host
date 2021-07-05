@@ -90,6 +90,8 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
         Target: {target}
+        <br/>
+        Deadline: {deadline.split("T")[0]}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -122,12 +124,11 @@ const FundCards=({title, image, description,gendate, target, deadline})=> {
         <Fade in={open}>
           <div className={classes.paper}>
           <Button className="float-right" onClick={handleClose}><CancelIcon/></Button>
-          <h2 className="color-black">{title}</h2>
+          <h3 className="color-black">{title}</h3>
             <div className={classes.rootCard}>
               <center>
                 <img src={image} className="fit-donor"/>
                 <p>{description}</p>
-                <br/>
                 Target: {target}
                 <br/> 
                 Published On: {gendate.split("T")[0]}
