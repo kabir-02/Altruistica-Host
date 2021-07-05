@@ -30,7 +30,10 @@ const Navbar = ({toggle}) => {
                     <NavItem>
                         <NavLinks to="contact">Contact</NavLinks>
                     </NavItem>
-                    <NavBtnLink to="signin">Sign In</NavBtnLink>
+                    { 
+                        window.location.pathname=='/'?<NavBtnLink to="signin">Sign In</NavBtnLink>:<div></div>
+                    }
+                    
                 </NavMenu>
                 
             </NavbarContainer>
