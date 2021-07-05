@@ -18,12 +18,14 @@ const HtmlTooltip = withStyles((theme) => ({
     },
   }))(Tooltip);
 
+  
 const HeroSection = () => {
     const [hover, setHover] = useState(false)
     const onHover = ()=>{
         setHover(!hover)
     }
     return (
+      <>
         <HeroContainer>
             <HeroBg>
                 <VideoBg autoPlay loop muted src={Video} type='video/mp4'/>
@@ -32,7 +34,7 @@ const HeroSection = () => {
                 <HeroH1>We are in this Together!</HeroH1>
                 <HeroP>
                 Raise money and support for causes, projects, ideas and talents. Join us in Empowering the World!
-                </HeroP>
+                </HeroP>        
                     <center>
         <Grid container spacing={3} >
         <Grid item xs={12} sm={3}> 
@@ -104,6 +106,7 @@ const HeroSection = () => {
                 </center>
             </HeroContent>
         </HeroContainer>    
+</>
     )
 }
 
