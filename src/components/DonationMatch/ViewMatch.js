@@ -1,9 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import IndividualCard from '../CardSection/IndividualCard'
-import {NavBtnLink} from '../Navbar/NavbarElements'
-import {BlogData} from '../Blog/blogContent'
+import DonorCards from '../CardSection/DonorCards'
 import Grid from '@material-ui/core/Grid';
+import {DonorMatchData} from '../CardSection/DonorMatchContent'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,10 +33,10 @@ export default function VievMatch(props) {
         <div className={classes.rootCard}>
     <center>
       <Grid container spacing={3} >
-        {BlogData.map((data, key)=>{
+        {DonorMatchData.map((data, key)=>{
           return(
             <Grid item xs={12} sm={6} md={4} key={key} >
-            <IndividualCard title={data.title} author={data.author} date={data.date} description={data.description} image={data.image} url={data.url} />
+            <DonorCards title={data.title} author={data.author} date={data.date} description={data.description} image={data.image} url={data.url} />
             </Grid>
           )
         })}

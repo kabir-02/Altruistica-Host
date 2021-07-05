@@ -1,9 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import TinderCard from 'react-tinder-card'
 import './index.css'
-import { withStyles} from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
+
 
 const db = [
   {
@@ -27,16 +25,6 @@ const db = [
     url: './img/donor-match/toys.jpg'
   }
 ]
-
-const HtmlTooltip = withStyles((theme) => ({
-  tooltip: {
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: '1px solid #dadde9',
-  },
-}))(Tooltip);
 
 const alreadyRemoved = []
 let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
@@ -85,15 +73,7 @@ function DonationMatch () {
       <div className='buttons'>
         <button onClick={() => swipe('left')}>Swipe left!</button>
         <button onClick={() => swipe('right')}>Swipe right!</button>
-        <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography color="inherit">Coming Soon!</Typography>
-          </React.Fragment>
-        }
-      >
-        <button><a className="buttonMatch">View Matches</a></button>
-      </HtmlTooltip>
+        <button><a className="buttonMatch" href="/matched-donors">View Matches</a></button>
         
       </div>
       {console.log(characters)}

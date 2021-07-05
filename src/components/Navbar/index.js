@@ -13,8 +13,7 @@ const Navbar = ({toggle}) => {
                 </MobileIcon>
                 <NavMenu>
                     <NavItem>
-                        {console.log(window.location.pathname)}
-                        {window.location.pathname==='/'?<NavLinks to="about">About</NavLinks>: <NavLink to="/">About</NavLink>}
+                        <NavLinks to="about">About</NavLinks>
                     </NavItem>
                     <NavItem>
                         <NavLinks to="donate">Donate</NavLinks>

@@ -347,3 +347,7 @@ textarea{
     text-decoration: none!important;
     color:white!important;
   }
+
+  .fit-donor{
+    width:250px !important;
+  }
