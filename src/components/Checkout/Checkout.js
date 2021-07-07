@@ -66,7 +66,7 @@ export default function Checkout(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [val, setVal] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/display-payment-details").then((response)=>{
       setVal(response.data);
     });
   });

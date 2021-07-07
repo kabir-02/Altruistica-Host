@@ -97,7 +97,7 @@ export const Leaderboard = (props) => {
 
   useEffect(()=>{
     //  for first board
-    Axios.get('http://localhost:8082/lboard1').then((response)=>{
+    Axios.get('https://altruistica.azurewebsites.net/lboard1').then((response)=>{
       console.log("response for board 1",response.data)
       //  we are getting fields which we need
       const {Name,Email,Tamt_donated}= response.data[0]
@@ -112,7 +112,7 @@ export const Leaderboard = (props) => {
     })
 
         //  for second board
-        Axios.get('http://localhost:8082/lboard2').then((response)=>{
+        Axios.get('https://altruistica.azurewebsites.net/lboard2').then((response)=>{
           console.log("response for board 2",response.data)
           //  we are getting fields which we need
           const {Name,Email,Tamt_donated}= response.data[0]
@@ -126,7 +126,7 @@ export const Leaderboard = (props) => {
         })
 
             //  for third board
-    Axios.get('http://localhost:8082/lboard3').then((response)=>{
+    Axios.get('https://altruistica.azurewebsites.net/lboard3').then((response)=>{
       console.log("response for board 3",response.data)
       //  we are getting fields which we need
       const {Name,Tamt_donated}= response.data[0]

@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/c2bdf1c5-3007-43b3-848a-43ce850dd673/resourceGroups/Altruistica/providers/Microsoft.Web/sites/altruistica"
+}

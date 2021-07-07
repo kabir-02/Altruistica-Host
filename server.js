@@ -3,17 +3,18 @@ const app = express();
 const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser=require('body-parser');
-const bcrypt=require("bcrypt");
+
 const session=require('express-session');
 const cookieParser = require('cookie-parser');
+PORT1= process.env.PORT || 8001;
 
 app.use(cors({
-  origin: ["http://localhost:8001"],
+  origin: [`https://altruistica.azurewebsites.net/`],
   methods: ["GET", "POST"],
   credentials: true,
 }))
 
-PORT = 8082;
+PORT = process.env.PORT || 8082;
 
 let db = mysql.createConnection({
   host: 'localhost',
@@ -162,25 +163,20 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
 
 	db.query("select * from user_info where Email = ? and Create_pw = ?",[email,password],function(error,results,fields){
-    if(error) {
-      res.send({err:err});
-    }
+    
     if (results.length > 0) {         
-          bcrypt.compare(password, results[0].Create_pw, (err, response)=>{
-             if(!response){
-              req.session.user=results;
-              console.log(req.session.user);
-              res.send({ message: "Logged in!" });
+           res.send({ message: "Logged in!" });
+           res.redirect("https://altruistica.azurewebsites.net//user-profile");
+           
             }
             else{
               res.send({ message: "Wrong email/password combination!" });
             }
+            res.end();
           });
-        }else{
-          res.send({message:"User doesn't exist"});
-        }
+        
       });
- });
+ 
 
 
 

@@ -109,7 +109,7 @@ export default function EditProfile() {
     }
   }
   const updateUserProfile = body => {
-    Axios.post("http://localhost:8082/update_user_profile", body)
+    Axios.post("https://altruistica.azurewebsites.net/update_user_profile", body)
       .then(res => {
         console.log("udpate_user_profile api", res)
         if (res.status === 200) {

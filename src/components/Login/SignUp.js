@@ -37,7 +37,7 @@ class SignUp extends React.Component {
     console.log(JSON.stringify(this.state));
     // On submit of the form, send a POST request with the data to the server.
     this.routeChange();
-    fetch(" http://localhost:8082/signup", {
+    fetch(" https://altruistica.azurewebsites.net/signup", {
       body: JSON.stringify(this.state),
       cache: "no-cache",
       credentials: "same-origin",

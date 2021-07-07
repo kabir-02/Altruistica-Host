@@ -16,7 +16,7 @@ export class Login extends React.Component {
 
   login = () => {
  
-    Axios.post("http://localhost:8082/login", {
+    Axios.post("https://altruistica.azurewebsites.net/login", {
       email: this.state.email,
       password: this.state.password,
     }).then((response) => {
@@ -32,7 +32,7 @@ export class Login extends React.Component {
   };
 
   componentWillMount = () => {
-    Axios.get("http://localhost:8082/login").then((response) => {
+    Axios.get("https://altruistica.azurewebsites.net/login").then((response) => {
       if (response.data.loggedIn == true) {
         this.state.loginStatus = response.data.user[0].email;
       }

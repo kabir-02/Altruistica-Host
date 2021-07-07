@@ -71,9 +71,9 @@ function App() {
           <Route path="/edit-profile">
             <EditProfile />
           </Route>
-          <Route path="/fundraiser">
-            <Fundraiser />
-          </Route>
+          {/* // <Route path="/fundraiser">
+           // <Fundraiser />
+           // </Route> */}
           <Route path="/support">
             <Gratitude />
           </Route>

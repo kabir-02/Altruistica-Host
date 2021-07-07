@@ -29,7 +29,7 @@ export default function Search(){
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/searchall?criteria="+searchTerm).then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/searchall?criteria="+searchTerm).then((response)=>{
       setCards(response.data);
     });
   });

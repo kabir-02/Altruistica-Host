@@ -99,7 +99,7 @@ export default function CustomizedDialogs() {
     createFund(body)
   }
   const createFund = body => {
-    Axios.post("http://localhost:8082/create_fund", body)
+    Axios.post("https://altruistica.azurewebsites.net/create_fund", body)
       .then(res => {
         console.log("create_fund api", res)
         if (res.status === 200) {

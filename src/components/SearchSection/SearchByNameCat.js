@@ -30,7 +30,7 @@ export default function SearchByName(props){
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/searchfundsbycategory?class="+props.fr_class+"&category="+props.fr_category+"&criteria="+searchTerm).then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/searchfundsbycategory?class="+props.fr_class+"&category="+props.fr_category+"&criteria="+searchTerm).then((response)=>{
     console.log("HELP ME"+props.fr_category)  
     setCards(response.data);
     });

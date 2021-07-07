@@ -51,7 +51,7 @@ export default function Gratitude() {
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/support?criteria="+searchTerm).then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/support?criteria="+searchTerm).then((response)=>{
       setSupport(response.data);
       console.log(response.data)
     });

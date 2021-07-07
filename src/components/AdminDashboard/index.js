@@ -32,7 +32,7 @@ export default function AdminDashboard() {
   const [approvals, setApprovals] = useState([]);
 
   const submitApproval=(fr_id)=>{
-    Axios.put('http://localhost:8082/updateApprovalStatus', {fr_id: fr_id }).then((response)=>{
+    Axios.put('https://altruistica.azurewebsites.net/updateApprovalStatus', {fr_id: fr_id }).then((response)=>{
       setApprovals(response.data);
     });
     //refreshPage();
@@ -46,7 +46,7 @@ export default function AdminDashboard() {
   // }
 
   useEffect(() => {
-    Axios.get("http://localhost:8082/displayapprovals").then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/displayapprovals").then((response)=>{
       console.log(response.data);
       setApprovals(response.data);
     });

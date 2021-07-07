@@ -14,12 +14,12 @@ export default function PaymentForm() {
   const [anon, setAnon]=useState([]);
 
   const submitPayment=()=>{
-    Axios.post('http://localhost:8082/complete-payment', {amount: amount, anonymous:anon }).then(()=>{
+    Axios.post('https://altruistica.azurewebsites.net/complete-payment', {amount: amount, anonymous:anon }).then(()=>{
      alert("Successful Insert");
     });
   };
   useEffect(() => {
-    Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/display-payment-details").then((response)=>{
       setVal(response.data);
     });
   });

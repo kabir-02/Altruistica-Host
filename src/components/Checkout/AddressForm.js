@@ -10,7 +10,7 @@ export default function AddressForm() {
 
   const [value, setValue] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:8082/display-payment-details").then((response)=>{
+    Axios.get("https://altruistica.azurewebsites.net/display-payment-details").then((response)=>{
       setValue(response.data);
     });
   });
